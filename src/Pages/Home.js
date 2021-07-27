@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from 'react';
-import { FlatList, StyleSheet, Text, View, Keyboard  } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Keyboard, TouchableOpacity  } from 'react-native';
+import { AntDesign } from '@expo/vector-icons'; 
+
 
 export function Home() {
     return (
@@ -9,7 +11,25 @@ export function Home() {
             </View>
 
             <View style={styles.viewFuncionalidades}>
-                 <Text style={styles.title}>Logo</Text> 
+                <View>
+                    <TouchableOpacity style={styles.btn}>
+                        <Text style={styles.title}>BeWell</Text>
+                    </TouchableOpacity>
+                
+                    <TouchableOpacity style={styles.btn}>
+                        <Text style={styles.title}>BeWell</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View> 
+                    <TouchableOpacity style={styles.btn}>
+                        <Text style={styles.title}>BeWell</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.btn}>
+                        <Text style={styles.title}>BeWell</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
             <View style={styles.viewButtons}>
@@ -39,11 +59,24 @@ const styles = StyleSheet.create({
     },
     viewFuncionalidades:{ 
         height: 480, 
-        backgroundColor:'red'
-    }, 
+        backgroundColor:'red', 
+        flexDirection:"row", 
+        alignItems:'center', 
+        justifyContent:'space-evenly'
+	},
     viewButtons:{
         backgroundColor:'blue', 
-        height:250
+        height:250,
+    }, 
+
+    btn:{
+        width: 120,
+        height: 120, 
+        borderRadius:90,  
+        backgroundColor:'blue',
+        margin:50, 
+        alignItems:'center',
+        justifyContent:'center'
     }
     
 })
