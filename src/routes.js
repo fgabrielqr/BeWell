@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Dashboard from './pages/Dashboard';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home } from './pages/Home';
 
 const Stack = createStackNavigator();
 
-export function Routes(){
-    return(
+export function Routes() {
+    return (
         <Stack.Navigator>
-            <Stack.Screen name='Home' component={Home}  options={{ headerShown: false  }}  />
+            <Stack.Screen name='Dashboard' component={Dashboard} options={{ headerShown: false }} />
         </Stack.Navigator>
     );
 }
