@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/index';
 
 export default function Dashboard({ navigation }) {
@@ -19,21 +19,37 @@ export default function Dashboard({ navigation }) {
             <View style={styles.viewFuncionalidades}>
                 <View>
                     <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.title}>BeWell</Text>
+                        <Image
+                            source={require('../assets/imagens/img4.png')}
+                            style={styles.logo1}
+                        />
+                        {/* <Text style={styles.title}>BeWell</Text> */}
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.title}>BeWell</Text>
+                        <Image
+                            source={require('../assets/imagens/img3.png')}
+                            style={styles.logo2}
+                        />
+                        {/* <Text style={styles.title}>BeWell</Text> */}
                     </TouchableOpacity>
                 </View>
 
                 <View>
                     <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.title}>BeWell</Text>
+                        <Image
+                            source={require('../assets/imagens/img2.png')}
+                            style={styles.logo3}
+                        />
+                        {/* <Text style={styles.title}>BeWell</Text> */}
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.title}>BeWell</Text>
+                        <Image
+                            source={require('../assets/imagens/img1.png')}
+                            style={styles.logo4}
+                        />
+                        {/* <Text style={styles.title}>BeWell</Text> */}
                     </TouchableOpacity>
                 </View>
             </View>

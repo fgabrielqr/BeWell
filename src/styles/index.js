@@ -54,5 +54,21 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Roboto',
         fontWeight: 'bold'
-    }
+    },
+    logo1: {
+        width: 70,
+        height: 78,
+    },
+    logo2: {
+        width: 60,
+        height: 78,
+    },
+    logo3: {
+        width: 50,
+        height: 50,
+    },
+    logo4: {
+        width: 60,
+        height: 60,
+    },
 });
