@@ -2,7 +2,14 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/index';
 
-export default function Dashboard() {
+export default function Dashboard({ navigation }) {
+    function navigationToLogin() {
+        navigation.navigate('Login');
+    }
+
+    function navigationToCadastro() {
+        navigation.navigate('Cadastro');
+    }
     return (
         <View style={styles.container}>
             <View style={styles.viewLogo}>
@@ -33,12 +40,12 @@ export default function Dashboard() {
 
             <View style={styles.viewButtons}>
                 <View>
-                    <TouchableOpacity style={styles.btn_login}>
+                    <TouchableOpacity style={styles.btn_login} onPress={navigationToLogin}>
                         <Text style={styles.login}>LOGIN</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity style={styles.btn_login}>
+                    <TouchableOpacity style={styles.btn_login} onPress={navigationToCadastro}>
                         <Text style={styles.login}>CADASTRO</Text>
                     </TouchableOpacity>
                 </View>
