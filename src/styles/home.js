@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     btn: {
-
         width: 120,
         height: 120,
         borderRadius: 90,
@@ -65,9 +64,9 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     logo: {
-        width: 100,
+        width: 150,
         height: 250,
-        marginTop: 120
+        marginTop: 0
     },
     logo1: {
         width: 70,
@@ -107,5 +106,31 @@ export const styles = StyleSheet.create({
         color: 'gray',
         borderRadius: 5,
         fontSize: 17,
-    }
+    },
+    Titulo: {
+        top: 10,
+        fontSize: 15,
+        color: 'black',
+    },
+    ti: {
+        top: 38,
+        fontSize: 15,
+        color: 'black',
+        fontWeight: 'bold',
+    },
+    ti1: {
+        top: 35,
+        fontSize: 15,
+        color: '#868081',
+    },
+    img: {
+        top: 80,
+        width: 60,
+        height: 60,
+        borderRadius: 10,
+        height: 60,
+        alignItems: 'center',
+        backgroundColor: '#000000',
+        right: 150
+    },
 });

@@ -21,6 +21,16 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.viewLogo}>
+                <Image style={styles.img} />
+                <View style={styles.viewLogo1}>
+
+                    <Text style={styles.ti}>
+                        Olá, Felipe
+                    </Text>
+                    <Text style={styles.ti1}>
+                        Hoje é dia de melhorar sua mente!
+                    </Text>
+                </View>
                 <Image
                     source={require('../assets/imagens/img5.png')}
                     style={styles.logo}
