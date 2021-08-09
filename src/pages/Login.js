@@ -4,8 +4,8 @@ import { styles } from '../styles/login';
 import { Input } from '../components/Input';
 
 export default function Login({ navigation }) {
-    function navigationToLogin() {
-        navigation.navigate('Login')
+    function navigationToHome() {
+        navigation.navigate('Home')
     }
     return (
         <View>
@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
             </View>
 
             <View>
-                <TouchableOpacity style={styles.btn_login} >
+                <TouchableOpacity style={styles.btn_login} onPress={navigationToHome}>
                     <Text style={styles.textBtn}>
                         LOGIN
                     </Text>

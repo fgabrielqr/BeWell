@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     viewLogo: {
-        backgroundColor: '#FBFE7F',
+        backgroundColor: '#bde4dd',
         height: 200,
         width: '100%',
         alignItems: "center",
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
         width: 120,
         height: 120,
         borderRadius: 90,
-        backgroundColor: '#FBFE7F',
+        backgroundColor: '#bde4dd',
         margin: 35,
         alignItems: 'center',
         justifyContent: 'center'
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
         height: 50,
         padding: 0,
         borderRadius: 5,
-        backgroundColor: '#FBFE7F',
+        backgroundColor: '#bde4dd',
         margin: 30,
         alignItems: 'center',
         justifyContent: 'center',
@@ -62,6 +62,10 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Roboto',
         fontWeight: 'bold'
+    },
+    logo: {
+        width: 150,
+        height: 250,
     },
     logo1: {
         width: 70,

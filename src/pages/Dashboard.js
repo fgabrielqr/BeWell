@@ -13,7 +13,10 @@ export default function Dashboard({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.viewLogo}>
-                <Text style={styles.title}>BeWell</Text>
+                <Image
+                    source={require('../assets/imagens/img5.png')}
+                    style={styles.logo}
+                />
             </View>
 
             <View style={styles.viewFuncionalidades}>

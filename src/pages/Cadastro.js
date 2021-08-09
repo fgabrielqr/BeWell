@@ -23,7 +23,7 @@ export default function Cadastro({ navigation }) {
             </View>
 
             <View>
-                <TouchableOpacity style={styles.btn_login} >
+                <TouchableOpacity style={styles.btn_login} onPress={navigationToLogin}>
                     <Text style={styles.textBtn}>
                         CADASTRAR
                     </Text>
