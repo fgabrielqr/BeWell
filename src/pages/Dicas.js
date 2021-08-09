@@ -2,11 +2,11 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 
-export default function Videos() {
+export default function Dicas() {
     return (
         <View>
             <Text>
-                O que é ansiedade?
+                Dicas
             </Text>
         </View>
     )
