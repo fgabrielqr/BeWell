@@ -7,8 +7,9 @@ export function Input(props) {
         <View style={styles.containerInput}>
             <TextInput
                 style={styles.inputs}
-                placeholder={props.label}
+                placeholder={props.label} secureTextEntry={props.senha} onChangeText={props.onChangeText}
             />
         </View>
     )
 }
+
