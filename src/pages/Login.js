@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { Text, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Alert, Keyboard } from 'react-native';
 import { styles } from '../styles/login';
 import { Input } from '../components/Input';
 import api from '../service/api';
@@ -17,20 +17,16 @@ export default function Login({ navigation }) {
         console.log(email);
 
       try {
-            const responseToken = await api.get('api/token/', params);
-            const {token} = responseToken.data;
-            console.log(token)
+            const responseToken = await api.post('api/token/', params);
+            const response = responseToken.data;
+            console.log(response);
             setEmail(''); 
             setSenha(''); 
-            Keyboard.dismiss(); 
-            navigation.navigate('Home')
       }catch(error){
+          console.log(error);
         Alert.alert('Error');
       }
     }
-
-
-
 
     return (
         <View>
