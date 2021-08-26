@@ -1,17 +1,20 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Alert, Keyboard } from 'react-native';
 import { styles } from '../styles/login';
 import { Input } from '../components/Input';
 import api from '../service/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SimplesContext from '../contexts/SimplesContext';
 
 
 export default function Login({ navigation }) {
    
     const keyAsyncStorage = "@bewell:login";
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const {nome, setNome, email, setEmail, senha, setSenha} = useContext(SimplesContext);
 
 
     async function autenticationUser(){
@@ -28,7 +31,9 @@ export default function Login({ navigation }) {
                 'Content-Type': 'application/json'
             }
           });
-          console.log(response.data);
+          const data = response.data[0]; 
+          console.log(data.id);
+
           navigation.navigate('Home');
   
         } catch(error){
@@ -40,8 +45,8 @@ export default function Login({ navigation }) {
     //function fazer requisição a api 
     async function handleLogin(){
         var params = new URLSearchParams();
-        params.append('email', email);
-        params.append('password', senha); 
+        params.append('email', username);
+        params.append('password', password); 
 
       try {
             const responseToken = await api.post('api/token/', params);
@@ -50,8 +55,8 @@ export default function Login({ navigation }) {
             console.log(token);
             await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(token));
             //console.log(token);
-            setEmail(''); 
-            setSenha(''); 
+            setUsername(''); 
+            setPassword(''); 
             Keyboard.dismiss(); 
 
             autenticationUser();
@@ -65,18 +70,16 @@ export default function Login({ navigation }) {
         await AsyncStorage.clear();
       }
   
-    useEffect( ()=> {
-       autenticationUser();
-    }, []);
+    
 
     return (
         <View>
             <View style={styles.form}>
                 <Text style={styles.texto}>E-mail</Text>
-                <Input label='E-mail/Username' onChangeText = {text => setEmail(text)}/>
+                <Input label='E-mail/Username' onChangeText = {text => setUsername(text)}/>
             
                 <Text style={styles.texto}>Senha</Text>
-                <Input label='Senha' senha={true} onChangeText = {text => setSenha(text)}/>
+                <Input label='Senha' senha={true} onChangeText = {text => setPassword(text)}/>
 
             </View>
 
