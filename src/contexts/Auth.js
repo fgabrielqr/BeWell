@@ -68,14 +68,14 @@ function AuthProvider({children}){
     }
 
 
-    //useEffect(() => {   
-      //  loadUserStorageDate();
-        //setUserLoading(false);
-    //},[]);
+    useEffect(() => {   
+        loadUser();
+        setUserLoading(false);
+    },[]);
 
 
     return(
-        <AuthContext.Provider value={{user, signWithBewell}}>
+        <AuthContext.Provider value={{user, signWithBewell, userLoading}}>
             { children }
         </AuthContext.Provider>
         

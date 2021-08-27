@@ -15,8 +15,7 @@ const Stack = createStackNavigator();
 export function Routes() {
     return (
         <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#bde4dd' } }}>
-            <Stack.Screen name='Dashboard' component={Dashboard} options={{ headerShown: false }} />
-            <Stack.Screen name='Login' component={Login} />
+            <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
             <Stack.Screen name='Cadastro' component={Cadastro} />
             <Stack.Screen name='Home' component={HomeRoutes} options={{ headerShown: false }} />
             <Stack.Screen name='Ansiedade' component={Ansiedade} options={{ title: 'O que é ansiedade?' }} />

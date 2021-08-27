@@ -9,7 +9,7 @@ import { useAuth } from '../contexts/Auth';
 
 export default function Login({ navigation }) {
    
-r
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const {signWithBewell} = useAuth();
