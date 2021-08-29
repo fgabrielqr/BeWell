@@ -22,7 +22,7 @@ function AuthProvider({children}){
             
             const responseToken = await api.post('api/token/', params);
             const response = responseToken.data;
-            const token = response.access;            
+            const token = response.access;  
             const responseUser =  await  api.get('/meus-dados/', { 
                 headers:{
                     'authorization': 'Bearer ' + token,
@@ -38,7 +38,8 @@ function AuthProvider({children}){
                 email:email,
                 first_name:first_name,
                 last_name: last_name,
-                crp: crp                
+                crp: crp, 
+                tokenUser:token               
             }
             setUser(userLogged);
             await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
@@ -67,6 +68,11 @@ function AuthProvider({children}){
         }
     }
 
+    async function logout(){
+        setUser({});
+        await AsyncStorage.removeItem(keyAsyncStorage);
+    }
+
 
     useEffect(() => {   
         loadUser();
@@ -75,7 +81,7 @@ function AuthProvider({children}){
 
 
     return(
-        <AuthContext.Provider value={{user, signWithBewell, userLoading}}>
+        <AuthContext.Provider value={{user, logout, signWithBewell, userLoading}}>
             { children }
         </AuthContext.Provider>
         
