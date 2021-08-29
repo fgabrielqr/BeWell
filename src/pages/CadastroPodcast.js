@@ -6,7 +6,7 @@ import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 
 
-export default function CadastroPodcast() {
+export default function CadastroPodcast({ navigation }) {
 
     const {user, userLoading} = useAuth();
 
@@ -38,6 +38,10 @@ export default function CadastroPodcast() {
       }
     }
 
+    function navigationToListPodcast() {
+        navigation.navigate('ListPodcast');
+    }
+
     
     return (
         <View>
@@ -48,6 +52,15 @@ export default function CadastroPodcast() {
                 <Input label='URL' onChangeText = {text => setUrl(text)}/>
                 <Text style={styles.texto}>Nome</Text>
                 <Input label='Descricão' onChangeText = {text => setDescricao(text)}/>
+            </View>
+
+
+            <View>
+                <TouchableOpacity style={styles.btn_login} onPress={navigationToListPodcast}>
+                    <Text style={styles.textBtn}>
+                        Meus Podcasts
+                    </Text>
+                </TouchableOpacity>
             </View>
 
             <View>
