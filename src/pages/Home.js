@@ -12,7 +12,7 @@ export default function Home({ navigation }) {
     }
 
     function navigationToPodcast() {
-        navigation.navigate('Podcast');
+        navigation.navigate('CadastroPodcast');
     }
 
     function navigationToAutocuidado() {

@@ -3,7 +3,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Ansiedade from './pages/Ansiedade';
-import Podcast from './pages/Podcast';
+import CadastroPodcast from './pages/CadastroPodcast';
 import Videos from './pages/Videos';
 import Autocuidado from './pages/Autocuidado';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -19,7 +19,7 @@ export function Routes() {
             <Stack.Screen name='Cadastro' component={Cadastro} />
             <Stack.Screen name='Home' component={HomeRoutes} options={{ headerShown: false }} />
             <Stack.Screen name='Ansiedade' component={Ansiedade} options={{ title: 'O que é ansiedade?' }} />
-            <Stack.Screen name='Podcast' component={Podcast} options={{ title: 'Podcast' }} />
+            <Stack.Screen name='CadastroPodcast' component={CadastroPodcast} options={{ title: 'Podcast' }} />
             <Stack.Screen name='Videos' component={Videos} options={{ title: 'Vídeos' }} />
             <Stack.Screen name='Autocuidado' component={Autocuidado} options={{ title: 'Autocudados' }} />
         </Stack.Navigator>
