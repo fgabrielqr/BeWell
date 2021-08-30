@@ -8,7 +8,7 @@ import { useAuth } from '../contexts/Auth';
 export default function ListPodcast() {
 
     const {user, logout, userLoading} = useAuth();
-    const [podcast,setPodcast] = useState({});
+    const [podcast,setPodcast] = useState([]);
 
 
     
@@ -27,11 +27,10 @@ export default function ListPodcast() {
                 'Content-Type': 'application/json'    
             }
         } );
-        //const {result} = responsePodcast.data
-        
-        const {data} = responsePodcast        
-        setPodcast (data);
+        const [data] = responsePodcast
+        setPodcast(data);
         console.log(podcast);
+        
 
 
       }catch(error){
