@@ -5,6 +5,7 @@ import { Input } from '../components/Input';
 import api from '../service/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from '../contexts/Auth';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function Login({ navigation }) {
@@ -38,6 +39,9 @@ export default function Login({ navigation }) {
 
     return (
         <View>
+            <StatusBar
+            animated={true}
+            backgroundColor="#bde4dd"/>
             <View style={styles.form}>
                 <Text style={styles.texto}>E-mail</Text>
                 <Input label='E-mail/Username' onChangeText = {text => setUsername(text)}/>

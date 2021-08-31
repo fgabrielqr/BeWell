@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Alert, Keyboard } from
 import { styles } from '../styles/cadastro';
 import { Input } from '../components/Input';
 import api from '../service/api';
+import { StatusBar } from 'expo-status-bar';
 
 export default function Cadastro({ navigation }) {
 
@@ -45,6 +46,9 @@ export default function Cadastro({ navigation }) {
 
     return (
         <View>
+            <StatusBar
+            animated={true}
+            backgroundColor="#bde4dd"/>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
                 <Input label='Nome' onChangeText = {text => setFirst_name(text)}/>

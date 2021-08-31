@@ -1,8 +1,13 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/home';
+import { useAuth } from '../contexts/Auth';
+import { StatusBar } from 'expo-status-bar';
 
 export default function Home({ navigation }) {
+
+    const {user, logout, userLoading} = useAuth();
+
     function navigationToAnsiedade() {
         navigation.navigate('Ansiedade');
     }
@@ -20,16 +25,19 @@ export default function Home({ navigation }) {
     }
     return (
         <View style={styles.container}>
+            <StatusBar
+            animated={true}
+            backgroundColor="#bde4dd"/>
             <View style={styles.viewLogo}>
-                <Image style={styles.img} />
+                <View></View>
                 <View style={styles.viewLogo1}>
-
                     <Text style={styles.ti}>
-                        Olá, Felipe
+                        Olá,  
                     </Text>
-                    <Text style={styles.ti1}>
-                        Hoje é dia de melhorar sua mente!
+                    <Text style={styles.ti}>
+                        {user.first_name}
                     </Text>
+                    
                 </View>
                 <Image
                     source={require('../assets/imagens/img5.png')}
@@ -45,7 +53,7 @@ export default function Home({ navigation }) {
                             style={styles.logo1}
                         />
                     </TouchableOpacity>
-                    <Text style={styles.title1}>O que é asiedade?</Text>
+                    <Text style={styles.title1}>O que é ansiedade?</Text>
                     <TouchableOpacity style={styles.btn} onPress={navigationToPodcast}>
                         <Image
                             source={require('../assets/imagens/img3.png')}

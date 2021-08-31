@@ -3,15 +3,14 @@ import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import { styles } from '../styles/cadastro';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
+import { WebView } from 'react-native-webview';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function ListPodcast() {
 
     const {user, logout, userLoading} = useAuth();
     const [podcast,setPodcast] = useState([]);
-
-
-    
 
 
     //function fazer requisição a api 
@@ -29,7 +28,7 @@ export default function ListPodcast() {
         } );
         const [data] = responsePodcast
         setPodcast(data);
-        console.log(podcast);
+        console.log(data);
         
 
 
@@ -45,8 +44,11 @@ export default function ListPodcast() {
 
     return (
         <View>
+            <StatusBar
+            animated={true}
+            backgroundColor="#bde4dd"/>
             <View style={styles.form}>
-                <Text style={styles.texto}>Ola</Text>
+
             </View>
 
             <View>
