@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext} from 'react';
-import { Text, View, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, TouchableOpacity, Alert, FlatList} from 'react-native';
 import { styles } from '../styles/cadastro';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { WebView } from 'react-native-webview';
 import { StatusBar } from 'expo-status-bar';
+import  {Item}  from '../components/Item'
 
 
 export default function ListPodcast() {
@@ -26,9 +27,9 @@ export default function ListPodcast() {
                 'Content-Type': 'application/json'    
             }
         } );
-        const [data] = responsePodcast
+        const data = responsePodcast.data
         setPodcast(data);
-        console.log(data);
+        
         
 
 
@@ -39,7 +40,8 @@ export default function ListPodcast() {
     }
     
     useEffect( ()=>{
-        handleSearchePodcast();      
+        handleSearchePodcast(); 
+        console.log(podcast);     
     }, []);
 
     return (
@@ -47,8 +49,14 @@ export default function ListPodcast() {
             <StatusBar
             animated={true}
             backgroundColor="#bde4dd"/>
-            <View style={styles.form}>
-
+            <View>
+                <FlatList  data={podcast}  
+                    keyExtractor={item => item.id.toString()} 
+                    renderItem={ ({item}) =>  (
+                        <Text>{item.id} = {item.nome} = {item.url}</Text>
+                        
+                    ) }
+                />
             </View>
 
             <View>
