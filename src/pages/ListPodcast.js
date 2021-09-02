@@ -53,8 +53,7 @@ export default function ListPodcast() {
                 <FlatList  data={podcast}  
                     keyExtractor={item => item.id.toString()} 
                     renderItem={ ({item}) =>  (
-                        <Text>{item.id} = {item.nome} = {item.url}</Text>
-                        
+                        <Item data={item}/>
                     ) }
                 />
             </View>
