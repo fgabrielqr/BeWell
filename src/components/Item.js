@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     }, 
     video:{
         height:241, 
-        width:521
+        width:'100%'
     }
    
 })

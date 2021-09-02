@@ -17,7 +17,7 @@ export default function Home({ navigation }) {
     }
 
     function navigationToPodcast() {
-        navigation.navigate('CadastroPodcast');
+        navigation.navigate('MenuPodcast');
     }
 
     function navigationToAutocuidado() {

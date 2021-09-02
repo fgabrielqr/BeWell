@@ -6,14 +6,16 @@ import HomeRoutes from '../routes/home.routes';
 import Videos from '../pages/Videos';
 import Ansiedade from '../pages/Ansiedade';
 import Autocuidado from '../pages/Autocuidado';
+import MenuPodcast from '../pages/MenuPodcast';
 
 const AppStack = createStackNavigator();
-
+//MenuPodcast
 // rotas para os usuários logados
 export function AppRoutes(){
     return(
         <AppStack.Navigator >
             <AppStack.Screen name="Home" component={HomeRoutes} options={{ headerShown: false  }}/>
+            <AppStack.Screen name="MenuPodcast"  component={MenuPodcast} options={{ title: 'Menu Podcast' }}/>
             <AppStack.Screen name="CadastroPodcast"  component={CadastroPodcast} options={{ title: 'Cadastro de Podcast' }}/>
             <AppStack.Screen name="ListPodcast"  component={ListPodcast} options={{ title: 'Meus Podcasts' }}/>
             <AppStack.Screen name="Ansiedade"  component={Ansiedade} options={{ title: 'Sobre Ansiedade' }}/>
