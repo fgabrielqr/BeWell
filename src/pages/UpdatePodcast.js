@@ -1,57 +1,42 @@
 import React, { useState, useEffect, useContext} from 'react';
-import { Text, View, TouchableOpacity, Alert, FlatList} from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/cadastro';
+import { Input } from '../components/Input';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
-import { StatusBar } from 'expo-status-bar';
-import { Input } from '../components/Input';
 
 
-export default function UpdatePodcast() {
+export default function UpdatePodcast({route, navigation }) {
 
-    const {user, logout, userLoading} = useAuth();
-    const [podcast,setPodcast] = useState([]);
+    const [podcast, setPodecast] = useState(route.params ? route.params : {})
+    console.warn(route.params)
 
 
     //function fazer requisição a api 
-    async function handleSearchePodcast(){
+    async function UpdatePodcast(){
        
-      try {
-        console.log(user.tokenUser);
-
-        const responsePodcast =  await  api.get('podcasts/' + user.id, { 
-            headers:{
-                'authorization': 'Bearer ' + user.tokenUser,
-                'Accept' : 'application/json',
-                'Content-Type': 'application/json'    
-            }
-        } );
-        const data = responsePodcast.data
-        setPodcast(data);
-        console.log(data)
-
-      }catch(error){
-            console.log(error);
-            Alert.alert('Error');
-      }
     }
-    
-    useEffect( ()=>{
-        handleSearchePodcast(); 
-    }, []);
 
+    function navigationToListPodcast() {
+        navigation.navigate('ListPodcast');
+    }
+
+    
     return (
         <View>
-            <StatusBar
-            animated={true}
-            backgroundColor="#bde4dd"/>
+            <View style={styles.form}>
+                <Text style={styles.texto}>Nome</Text>
+                <Input label='Nome' onChangeText = {text => setNome(text)}  value={podcast.nome}/>
+                <Text style={styles.texto}>URL</Text>
+                <Input label='URL' onChangeText = {text => setUrl(text)} value={podcast.url}/>
+                <Text style={styles.texto}>Descrição</Text>
+                <Input label='Descricão' onChangeText = {text => setDescricao(text)} value={podcast.descricao}/>
+            </View>
 
-            <Input label='Nome' value={user.nome} />
-           
             <View>
-                <TouchableOpacity style={styles.btn_login} onPress={logout}>
+                <TouchableOpacity style={styles.btn_login} onPress={UpdatePodcast}>
                     <Text style={styles.textBtn}>
-                        Logout
+                        Editar
                     </Text>
                 </TouchableOpacity>
             </View>

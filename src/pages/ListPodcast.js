@@ -14,9 +14,6 @@ export default function ListPodcast({navigation}) {
     const [podcast,setPodcast] = useState([]);
 
 
-    function navigationEditarPodcast() {
-        navigation.navigate('CadastroPodcast', user);
-    }
 
     //function fazer requisição a api 
     async function handleSearchePodcast(){

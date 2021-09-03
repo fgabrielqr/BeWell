@@ -14,7 +14,7 @@ export default function MenuPodcast({ navigation }) {
 
 
     function navigationEditarPodcast() {
-        navigation.navigate('CadastroPodcast', user);
+        navigation.navigate('UpdatePodcast');
     }
 
     function navigationCreatePodcast() {

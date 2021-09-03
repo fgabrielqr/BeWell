@@ -22,7 +22,7 @@ export function Item(props){
             <Text style={styles.descricao}>{props.data.descricao}</Text>
 
             <View>
-                <TouchableOpacity style={styles.btn_login}  onPress={() => props.navigation.navigate('CadastroPodcast', props.data)}
+                <TouchableOpacity style={styles.btn_login}  onPress={() => props.navigation.navigate('UpdatePodcast', props.data)}
 >
                     <Text style={styles.textBtn} >
                         Editar
