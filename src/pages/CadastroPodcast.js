@@ -6,13 +6,11 @@ import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 
 
-export default function CadastroPodcast({ navigation }) {
+export default function CadastroPodcast({route, navigation }) {
 
-    const {user, userLoading} = useAuth();
+    const [podcast, setPodecast] = useState(route.params ? route.params : {})
 
-    const [nome, setNome] = useState('');
-    const [url, setUrl] = useState('');
-    const [descricao, setDescricao] = useState('');
+    console.warn(route.params)
 
 
     //function fazer requisição a api 
@@ -47,11 +45,11 @@ export default function CadastroPodcast({ navigation }) {
         <View>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {text => setNome(text)}/>
-                <Text style={styles.texto}>Nome</Text>
-                <Input label='URL' onChangeText = {text => setUrl(text)}/>
-                <Text style={styles.texto}>Nome</Text>
-                <Input label='Descricão' onChangeText = {text => setDescricao(text)}/>
+                <Input label='Nome' onChangeText = {text => setNome(text)}  value={podcast.nome}/>
+                <Text style={styles.texto}>URL</Text>
+                <Input label='URL' onChangeText = {text => setUrl(text)} value={podcast.url}/>
+                <Text style={styles.texto}>Descrição</Text>
+                <Input label='Descricão' onChangeText = {text => setDescricao(text)} value={podcast.descricao}/>
             </View>
 
 

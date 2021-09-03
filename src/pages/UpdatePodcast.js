@@ -3,20 +3,15 @@ import { Text, View, TouchableOpacity, Alert, FlatList} from 'react-native';
 import { styles } from '../styles/cadastro';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
-import { WebView } from 'react-native-webview';
 import { StatusBar } from 'expo-status-bar';
-import  {Item}  from '../components/Item'
+import { Input } from '../components/Input';
 
 
-export default function ListPodcast({navigation}) {
+export default function UpdatePodcast() {
 
     const {user, logout, userLoading} = useAuth();
     const [podcast,setPodcast] = useState([]);
 
-
-    function navigationEditarPodcast() {
-        navigation.navigate('CadastroPodcast', user);
-    }
 
     //function fazer requisição a api 
     async function handleSearchePodcast(){
@@ -24,7 +19,7 @@ export default function ListPodcast({navigation}) {
       try {
         console.log(user.tokenUser);
 
-        const responsePodcast =  await  api.get('meus-podcasts/', { 
+        const responsePodcast =  await  api.get('podcasts/' + user.id, { 
             headers:{
                 'authorization': 'Bearer ' + user.tokenUser,
                 'Accept' : 'application/json',
@@ -33,9 +28,7 @@ export default function ListPodcast({navigation}) {
         } );
         const data = responsePodcast.data
         setPodcast(data);
-        
-        
-
+        console.log(data)
 
       }catch(error){
             console.log(error);
@@ -45,7 +38,6 @@ export default function ListPodcast({navigation}) {
     
     useEffect( ()=>{
         handleSearchePodcast(); 
-        console.log(podcast);     
     }, []);
 
     return (
@@ -53,15 +45,9 @@ export default function ListPodcast({navigation}) {
             <StatusBar
             animated={true}
             backgroundColor="#bde4dd"/>
-            <View>
-                <FlatList  data={podcast}  
-                    keyExtractor={item => item.id.toString()} 
-                    renderItem={ ({item}) =>  (
-                        <Item data={item}  navigation={navigation}/>
-                    ) }
-                />
-            </View>
 
+            <Input label='Nome' value={user.nome} />
+           
             <View>
                 <TouchableOpacity style={styles.btn_login} onPress={logout}>
                     <Text style={styles.textBtn}>

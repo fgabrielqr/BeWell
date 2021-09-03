@@ -7,6 +7,7 @@ import Videos from '../pages/Videos';
 import Ansiedade from '../pages/Ansiedade';
 import Autocuidado from '../pages/Autocuidado';
 import MenuPodcast from '../pages/MenuPodcast';
+import UpdatePodcast from '../pages/UpdatePodcast';
 
 const AppStack = createStackNavigator();
 //MenuPodcast
@@ -18,6 +19,7 @@ export function AppRoutes(){
             <AppStack.Screen name="MenuPodcast"  component={MenuPodcast} options={{ title: 'Menu Podcast' }}/>
             <AppStack.Screen name="CadastroPodcast"  component={CadastroPodcast} options={{ title: 'Cadastro de Podcast' }}/>
             <AppStack.Screen name="ListPodcast"  component={ListPodcast} options={{ title: 'Meus Podcasts' }}/>
+            <AppStack.Screen name="UpdatePodcast"  component={UpdatePodcast} options={{ title: 'Atualizar de Podcast' }}/>
             <AppStack.Screen name="Ansiedade"  component={Ansiedade} options={{ title: 'Sobre Ansiedade' }}/>
             <AppStack.Screen name="Videos"  component={Videos} options={{ title: 'Meus Videos' }}/>
             <AppStack.Screen name="Autocuidado"  component={Autocuidado} options={{ title: 'Meus Autocuidado' }}/>

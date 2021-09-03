@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
-import { Button, View, Text, StyleSheet, Alert } from 'react-native';
+import { Button, View, Text, StyleSheet, Alert , TouchableOpacity} from 'react-native';
 import { WebView } from 'react-native-webview';
 import YoutubePlayer from "react-native-youtube-iframe";
 
@@ -8,7 +8,7 @@ export function Item(props){
 
     let link_video = props.data.url;
     const url = link_video.split("=");
-    
+        
     return (
         <View style={styles.container}>
             <Text style={styles.titulo}>{props.data.nome}</Text>
@@ -20,6 +20,15 @@ export function Item(props){
                 />
             </View>
             <Text style={styles.descricao}>{props.data.descricao}</Text>
+
+            <View>
+                <TouchableOpacity style={styles.btn_login}  onPress={() => props.navigation.navigate('CadastroPodcast', props.data)}
+>
+                    <Text style={styles.textBtn} >
+                        Editar
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
