@@ -6,11 +6,13 @@ import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 
 
-export default function CadastroPodcast({route, navigation }) {
+export default function CadastroPodcast() {
 
-    const [podcast, setPodecast] = useState(route.params ? route.params : {})
+    const {user, userLoading} = useAuth();
 
-    console.warn(route.params)
+    const [nome, setNome] = useState('');
+    const [url, setUrl] = useState('');
+    const [descricao, setDescricao] = useState('');
 
 
     //function fazer requisição a api 
@@ -20,8 +22,6 @@ export default function CadastroPodcast({route, navigation }) {
         params.append('url', url);
         params.append('descricao', descricao); 
         params.append('id_usuario', user.id);
-
-        //is_active
 
       try {
             const response = await api.post('podcasts/', params);
@@ -36,29 +36,16 @@ export default function CadastroPodcast({route, navigation }) {
       }
     }
 
-    function navigationToListPodcast() {
-        navigation.navigate('ListPodcast');
-    }
-
     
     return (
         <View>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {text => setNome(text)}  value={podcast.nome}/>
-                <Text style={styles.texto}>URL</Text>
-                <Input label='URL' onChangeText = {text => setUrl(text)} value={podcast.url}/>
-                <Text style={styles.texto}>Descrição</Text>
-                <Input label='Descricão' onChangeText = {text => setDescricao(text)} value={podcast.descricao}/>
-            </View>
-
-
-            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={navigationToListPodcast}>
-                    <Text style={styles.textBtn}>
-                        Meus Podcasts
-                    </Text>
-                </TouchableOpacity>
+                <Input label='Nome' onChangeText = {text => setNome(text)}/>
+                <Text style={styles.texto}>Nome</Text>
+                <Input label='URL' onChangeText = {text => setUrl(text)}/>
+                <Text style={styles.texto}>Nome</Text>
+                <Input label='Descricão' onChangeText = {text => setDescricao(text)}/>
             </View>
 
             <View>
