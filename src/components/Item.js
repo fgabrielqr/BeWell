@@ -29,6 +29,15 @@ export function Item(props){
                     </Text>
                 </TouchableOpacity>
             </View>
+
+            <View>
+                <TouchableOpacity style={styles.btn_login}  onPress={props.apagar}>
+
+                    <Text style={styles.textBtn} >
+                        Excluir
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }

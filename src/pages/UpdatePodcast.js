@@ -11,7 +11,7 @@ export default function UpdatePodcast({route, navigation }) {
     const [podcast, setPodecast] = useState(route.params ? route.params : {})
     const {user, logout, userLoading} = useAuth();
 
-
+    //navegation para ir para tela do Listagem de podcast
     function navigationToListPodcast() {
         navigation.navigate('ListPodcast');
     }
