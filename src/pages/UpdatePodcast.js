@@ -12,13 +12,18 @@ export default function UpdatePodcast({route, navigation }) {
     const {user, logout, userLoading} = useAuth();
 
 
+    function navigationToListPodcast() {
+        navigation.navigate('ListPodcast');
+    }
+
+
     //function fazer requisição a api 
     async function UpdatePodcast(){
-        var params = new FormData();
-        params.append('nome', podcast.nome);
-        params.append('url', podcast.url);
-        params.append('descricao', podcast.descricao); 
-        params.append('id_usuario', podcast.id_usuario);
+        var body = new FormData();
+        body.append('nome', podcast.nome);
+        body.append('url', podcast.url);
+        body.append('descricao', podcast.descricao); 
+        body.append('id_usuario', podcast.id_usuario);
     
         const headers = { 
             'authorization': 'Bearer ' + user.tokenUser,
@@ -27,17 +32,13 @@ export default function UpdatePodcast({route, navigation }) {
         };
 
         try {
-            const responseUser =  await api.put('podcasts/' +podcast.id+'/', params, { headers, body: params } );
+            const responsePodcast =  await api.put('podcasts/' +podcast.id+'/', params, { headers, body: body } );
             navigationToListPodcast();
         }catch(error){
             console.log(error);
             Alert.alert('Error');
         }
 
-    }
-
-    function navigationToListPodcast() {
-        navigation.navigate('ListPodcast');
     }
 
     

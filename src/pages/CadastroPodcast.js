@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext} from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Keyboard, Text, View, TouchableOpacity, Alert} from 'react-native';
 import { styles } from '../styles/cadastro';
 import { Input } from '../components/Input';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 
 
-export default function CadastroPodcast() {
+export default function CadastroPodcast({navigation }) {
 
     const {user, userLoading} = useAuth();
 
@@ -14,25 +14,36 @@ export default function CadastroPodcast() {
     const [url, setUrl] = useState('');
     const [descricao, setDescricao] = useState('');
 
+    //function para redirecionar para a pagina da lista de podcast
+    function navigationToListPodcast() {
+        navigation.navigate('ListPodcast');
+    }
+
 
     //function fazer requisição a api 
     async function handleCreatePodcast(){
-        var params = new URLSearchParams();
-        params.append('nome', nome);
-        params.append('url', url);
-        params.append('descricao', descricao); 
-        params.append('id_usuario', user.id);
+        var body = new FormData();
+        body.append('nome', nome);
+        body.append('url', url);
+        body.append('descricao', descricao);
+        body.append('id_usuario', user.id);
+        
+        const headers = { 
+            'authorization': 'Bearer ' + user.tokenUser,
+            'Accept' : 'application/json',
+            'Content-Type': 'application/json'  
+        };
 
       try {
-            const response = await api.post('podcasts/', params);
-            console.log(response);
-            setNome(''); 
-            setUrl('');
-            setDescricao('');
-            Keyboard.dismiss(); 
+        const responsePodcast =  await api.post('podcasts/', body, { headers, body: body } );
+        setNome(''); 
+        setUrl('');
+        setDescricao('');
+        Keyboard.dismiss(); 
+        navigationToListPodcast();
       }catch(error){
-            console.log(error);
-            Alert.alert('Error');
+        console.log(error);
+        Alert.alert('Error');
       }
     }
 

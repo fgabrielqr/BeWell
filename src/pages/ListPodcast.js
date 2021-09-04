@@ -13,14 +13,11 @@ export default function ListPodcast({navigation}) {
     const {user, logout, userLoading} = useAuth();
     const [podcast,setPodcast] = useState([]);
 
-
-
-    //function fazer requisição a api 
-    async function handleSearchePodcast(){
+    //function para listar podcasts 
+    async function handleListPodcast(){
        
       try {
-        console.log(user.tokenUser);
-
+        //Requisição a api 
         const responsePodcast =  await  api.get('meus-podcasts/', { 
             headers:{
                 'authorization': 'Bearer ' + user.tokenUser,
@@ -28,12 +25,10 @@ export default function ListPodcast({navigation}) {
                 'Content-Type': 'application/json'    
             }
         } );
+        //Pegando o data do response da api
         const data = responsePodcast.data
-        setPodcast(data);
-        
-        
-
-
+        setPodcast(data); //Setando o data para o podcast
+    
       }catch(error){
             console.log(error);
             Alert.alert('Error');
@@ -41,8 +36,7 @@ export default function ListPodcast({navigation}) {
     }
     
     useEffect( ()=>{
-        handleSearchePodcast(); 
-        console.log(podcast);     
+        handleListPodcast(); 
     }, []);
 
     return (
