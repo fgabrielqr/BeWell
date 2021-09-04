@@ -12,11 +12,6 @@ export default function MenuPodcast({ navigation }) {
         navigation.navigate('ListPodcast');
     }
 
-
-    function navigationEditarPodcast() {
-        navigation.navigate('UpdatePodcast');
-    }
-
     function navigationCreatePodcast() {
         navigation.navigate('CadastroPodcast');
     }
@@ -31,14 +26,6 @@ export default function MenuPodcast({ navigation }) {
                 <TouchableOpacity style={styles.btn_login} onPress={navigationToListPodcast}>
                     <Text style={styles.textBtn}>
                         Meus Podcasts
-                    </Text>
-                </TouchableOpacity>
-            </View>
-
-            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={navigationEditarPodcast}>
-                    <Text style={styles.textBtn}>
-                        Editar
                     </Text>
                 </TouchableOpacity>
             </View>

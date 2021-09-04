@@ -13,27 +13,34 @@ export default function ListPodcast({navigation}) {
     const {user, logout, userLoading} = useAuth();
     const [podcast,setPodcast] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [podcastDelete, setPodcastDelete] = useState();
 
+    async function handleDeletePodcast(id) {
+        console.log(id);      
+        const headers = { 
+           'authorization': 'Bearer ' + user.tokenUser,
+                   'Accept' : 'application/json',
+                   'Content-Type': 'application/json'  
+       }; 
+
+       try {
+           const responsePodcast =  await api.delete('podcasts/' +id+'/', { headers} );
+           navigationToListPodcast();
+           setModalVisible(!modalVisible)
+       }catch(error){
+           console.log(error);
+           Alert.alert('Error');
+       }
+   }
 
     function navigationToListPodcast() {
         navigation.navigate('ListPodcast');
     }
 
-    async function handleDeletePodcast(id) {
-         console.log(id);      
-         const headers = { 
-            'authorization': 'Bearer ' + user.tokenUser,
-                    'Accept' : 'application/json',
-                    'Content-Type': 'application/json'  
-        }; 
-
-        try {
-            const responsePodcast =  await api.delete('podcasts/' +id+'/', { headers} );
-            navigationToListPodcast();
-        }catch(error){
-            console.log(error);
-            Alert.alert('Error');
-        }
+    async function handleModalPodcast(id) {
+        console.log(id);      
+        setModalVisible(true);
+        setPodcastDelete(id);
     }
 
     //function para listar podcasts 
@@ -67,12 +74,43 @@ export default function ListPodcast({navigation}) {
             <StatusBar
             animated={true}
             backgroundColor="#bde4dd"/>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    Alert.alert("O Modal foi fechado.");
+                    setModalVisible(!modalVisible);
+                    }}>
+                    <View style={style.centeredView}>
+                        <View style={style.modalView}>
+                            <Text style={style.modalText}>Deseja Exluir ?</Text>
+
+                            <View style={style.btns_modal}>
+                                <TouchableHighlight
+                                    style={[style.button, style.buttonClose]}
+                                    onPress={() => setModalVisible(!modalVisible)}
+                                    >
+                                    <Text style={style.textStyle}>Não</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight
+                                    style={[style.button, style.buttonOpen]}
+                                    onPress={() => handleDeletePodcast(podcastDelete)}
+                                    >
+                                    <Text style={style.textStyle}>Sim</Text>
+                                </TouchableHighlight>
+                            </View>
+        
+                        </View>
+                    </View>
+                </Modal>
+    
 
             <View>
                 <FlatList  data={podcast}  
                     keyExtractor={item => item.id.toString()} 
                     renderItem={ ({item}) =>  (
-                        <Item data={item}  navigation={navigation} apagar={ () => handleDeletePodcast(item.id) }/>
+                        <Item data={item}  navigation={navigation} apagar={ () => handleModalPodcast(item.id) }/>
                     ) }
                 />
             </View>
@@ -87,4 +125,55 @@ export default function ListPodcast({navigation}) {
         </View>
     )
 }
+
+const style = StyleSheet.create({
+    centeredView: {
+      width: '100%',
+      height: '100%',
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 5,
+      padding: 35,
+      justifyContent: "space-evenly",
+      alignItems: "center",
+      shadowColor: "#000",
+      width: '50%',
+      height: '20%',
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    modalText:{
+
+    },
+    btns_modal:{
+        flexDirection: 'row',
+        alignItems:'center',
+    },
+    button: {
+        borderRadius: 5,
+        elevation: 2
+    },
+    buttonOpen:{
+        backgroundColor:'#23cf5c', 
+        margin: 20,
+        padding:10
+    },
+    buttonClose:{
+        backgroundColor:'#d12c38',
+        margin: 20,
+        padding:10
+
+    }
+    
+
+  });
 
