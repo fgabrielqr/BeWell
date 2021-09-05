@@ -1,13 +1,29 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity} from 'react-native';
+import { useAuth } from '../contexts/Auth';
+import { styles } from '../styles/cadastro';
 
+export default function Conta({navigation}) {
 
-export default function Conta() {
+    const {user, logout, userLoading} = useAuth();
+
+    function navigationToUdateUser() {
+        navigation.navigate('UpdateUser', user);
+    }
+
     return (
         <View>
             <Text>
                 Conta
             </Text>
+            <View>
+                <TouchableOpacity style={styles.btn_login} onPress={navigationToUdateUser}>
+                    <Text style={styles.textBtn}>
+                        Editar Perfil
+                    </Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     )
 };

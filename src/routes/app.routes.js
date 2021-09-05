@@ -8,7 +8,9 @@ import Ansiedade from '../pages/Ansiedade';
 import Autocuidado from '../pages/Autocuidado';
 import MenuPodcast from '../pages/MenuPodcast';
 import UpdatePodcast from '../pages/UpdatePodcast';
+import UpdateUser from '../pages/UpdateUser';
 
+//UpdateUser
 const AppStack = createStackNavigator();
 //MenuPodcast
 // rotas para os usuários logados
@@ -23,6 +25,9 @@ export function AppRoutes(){
             <AppStack.Screen name="Ansiedade"  component={Ansiedade} options={{ title: 'Sobre Ansiedade' }}/>
             <AppStack.Screen name="Videos"  component={Videos} options={{ title: 'Meus Videos' }}/>
             <AppStack.Screen name="Autocuidado"  component={Autocuidado} options={{ title: 'Meus Autocuidado' }}/>
+            <AppStack.Screen name="UpdateUser"  component={UpdateUser} options={{ title: 'Atualizar de Perfil' }}/>
+
+        
         </AppStack.Navigator>
     )
 }
