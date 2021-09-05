@@ -32,7 +32,7 @@ export default function UpdatePodcast({route, navigation }) {
         };
 
         try {
-            const responsePodcast =  await api.put('podcasts/' +podcast.id+'/', params, { headers, body: body } );
+            const responsePodcast =  await api.put('podcasts/' +podcast.id+'/', body, { headers, body: body } );
             navigationToListPodcast();
         }catch(error){
             console.log(error);

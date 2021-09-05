@@ -13,7 +13,7 @@ export default function Home({ navigation }) {
     }
 
     function navigationToVideo() {
-        navigation.navigate('Videos');
+        navigation.navigate('MenuVideos');
     }
 
     function navigationToPodcast() {

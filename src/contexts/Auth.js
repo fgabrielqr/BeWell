@@ -31,7 +31,7 @@ function AuthProvider({children}){
                 }
             } );
             
-            const {id, first_name, last_name, crp, email} = responseUser.data[0]; 
+            const {id, first_name, last_name, crp, email, password, is_superuser,is_active,is_staff } = responseUser.data[0]; 
 
             const userLogged = {
                 id: id,
@@ -39,7 +39,12 @@ function AuthProvider({children}){
                 first_name:first_name,
                 last_name: last_name,
                 crp: crp, 
-                tokenUser:token               
+                tokenUser:token, 
+                password:password, 
+                is_superuser:is_superuser, 
+                is_active:is_active,
+                is_staff:is_staff
+
             }
             setUser(userLogged);
             await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
