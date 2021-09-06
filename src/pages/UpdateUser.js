@@ -33,7 +33,7 @@ export default function UpdateUser({route, navigation }) {
         url = 'user/' +user.id+'/'
         console.log(url)
         try {
-            const responseUser =  await api.put('user/1/', { headers, body: body } );
+            const responseUser =  await api.put('user/' +user.id+'/', body, { headers, body: body } );
             console.log(responseUser)
         }catch(error){
             console.log(error);

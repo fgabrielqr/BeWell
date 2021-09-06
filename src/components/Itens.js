@@ -21,17 +21,15 @@ export function Itens(props){
             </View>
             <Text style={styles.descricao}>{props.data.descricao}</Text>
 
-            <View>
-                <TouchableOpacity style={styles.btn_login}  onPress={() => props.navigation.navigate('UpdateVideos', props.data)}
+            <View style={styles.areaBtn}>
+                <TouchableOpacity style={styles.btn}  onPress={() => props.navigation.navigate('UpdateVideos', props.data)}
 >
                     <Text style={styles.textBtn} >
                         Editar
                     </Text>
                 </TouchableOpacity>
-            </View>
-
-            <View>
-                <TouchableOpacity style={styles.btn_login}  onPress={props.apagar}>
+            
+                <TouchableOpacity style={styles.btn}  onPress={props.apagar}>
 
                     <Text style={styles.textBtn} >
                         Excluir
@@ -44,18 +42,36 @@ export function Itens(props){
 
 const styles = StyleSheet.create({
     container:{
-        margin: 15,
+        flex:1,
+        marginTop: 15,
         borderRadius: 5,
         flexDirection: 'column',
-        alignItems:'center'
+        alignItems:'center',
+        //width:'100%'
     },
     titulo: {
         fontSize: 17,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignSelf:'flex-start',
+        padding:5,        
     }, 
     video:{
+        
         height:241, 
         width:'100%'
-    }
+    },
+    descricao:{
+        padding:5,
+        fontSize:15,
+        color: '#000',
+        alignSelf:'flex-start',
+    },
+    areaBtn:{
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        alignSelf:'flex-start',
+        padding:5,
+    },
+   
    
 })
