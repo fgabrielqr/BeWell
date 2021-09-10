@@ -60,14 +60,16 @@ export default function Login({ navigation }) {
             animated={true}
             backgroundColor="#bde4dd"/>
             <View style={styles.form}>
-            <InputForm name='email' control={control} 
+                <Text style={styles.texto}>E-mail</Text>
+                <InputForm name='email' control={control} 
                     placeholder="Email"
                     error={ errors.email && errors.email.message } 
                 />
+                <Text style={styles.texto}>Senha</Text>
                 <InputForm name='password' control={control} 
                     placeholder="Senha"
                     error={ errors.password && errors.password.message } 
-                    password={true}
+                    secureTextEntry={true}
                 />
 
             </View>

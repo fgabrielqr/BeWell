@@ -59,26 +59,31 @@ export default function Cadastro({ navigation }) {
             animated={true}
             backgroundColor="#bde4dd"/>
             <View style={styles.form}>
+                <Text style={styles.texto}>Nome</Text>
                 <InputForm name='first_name' control={control} 
                     placeholder="Nome"
                     error={ errors.first_name && errors.first_name.message } 
                 />
+                <Text style={styles.texto}>Sobrenome</Text>
                 <InputForm name='last_name' control={control} 
                     placeholder="Sobrenome"
                     error={ errors.last_name && errors.last_name.message } 
                 />
+                <Text style={styles.texto}>CRP</Text>
                 <InputForm name='crp' control={control} 
                     placeholder="Crp"
                     error={ errors.crp && errors.crp.message } 
                 />
+                <Text style={styles.texto}>E-mail</Text>
                 <InputForm name='email' control={control} 
                     placeholder="Email"
                     error={ errors.email && errors.email.message } 
                 />
+                <Text style={styles.texto}>Senha</Text>
                 <InputForm name='password' control={control} 
                     placeholder="Senha"
                     error={ errors.password && errors.password.message } 
-                    password={true}
+                    secureTextEntry={true}
                 />
             </View>
 
