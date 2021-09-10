@@ -4,15 +4,31 @@ import { styles } from '../styles/cadastro';
 import { Input } from '../components/Input';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
+import { InputForm } from '../components/InputForm';
+
+
+// import form
+import { useForm, Controller } from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// YUP
+const schema = yup.object().shape({
+    nome: yup.string().required("Informe o nome"),
+    url: yup.string().required("Informe a URL"),
+    descricao: yup.string().required("Informe o Descrição"),
+
+});
 
 
 export default function CadastroPodcast({navigation }) {
 
     const {user, userLoading} = useAuth();
 
-    const [nome, setNome] = useState('');
-    const [url, setUrl] = useState('');
-    const [descricao, setDescricao] = useState('');
+    // constante retornadas pelo react-hook-form
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
     //function para redirecionar para a pagina da lista de podcast
     function navigationToListPodcast() {
@@ -21,11 +37,11 @@ export default function CadastroPodcast({navigation }) {
 
 
     //function fazer requisição a api 
-    async function handleCreatePodcast(){
+    async function handleCreatePodcast(data){
         var body = new FormData();
-        body.append('nome', nome);
-        body.append('url', url);
-        body.append('descricao', descricao);
+        body.append('nome', data.nome);
+        body.append('url', data.url);
+        body.append('descricao', data.descricao);
         body.append('id_usuario', user.id);
         
         const headers = { 
@@ -36,9 +52,6 @@ export default function CadastroPodcast({navigation }) {
 
       try {
         const responsePodcast =  await api.post('podcasts/', body, { headers, body: body } );
-        setNome(''); 
-        setUrl('');
-        setDescricao('');
         Keyboard.dismiss(); 
         navigationToListPodcast();
       }catch(error){
@@ -52,17 +65,26 @@ export default function CadastroPodcast({navigation }) {
         <View>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {text => setNome(text)}/>
-                <Text style={styles.texto}>Nome</Text>
-                <Input label='URL' onChangeText = {text => setUrl(text)}/>
-                <Text style={styles.texto}>Nome</Text>
-                <Input label='Descricão' onChangeText = {text => setDescricao(text)}/>
+                <InputForm name='nome' control={control} 
+                    placeholder="Nome"
+                    error={ errors.nome && errors.nome.message } 
+                />
+                <Text style={styles.texto}>URL</Text>
+                <InputForm name='url' control={control} 
+                    placeholder="URL"
+                    error={ errors.url && errors.url.message } 
+                />
+                <Text style={styles.texto}>Descricão</Text>
+                <InputForm name='descricao' control={control} 
+                    placeholder="Descricão"
+                    error={ errors.descricao && errors.descricao.message } 
+                />
             </View>
 
             <View>
-                <TouchableOpacity style={styles.btn_login} onPress={handleCreatePodcast}>
+                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit ( handleCreatePodcast)}>
                     <Text style={styles.textBtn}>
-                        CADASTRAR
+                        Cadastrar
                     </Text>
                 </TouchableOpacity>
             </View>

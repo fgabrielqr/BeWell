@@ -13,7 +13,7 @@ export default function MenuVideos({ navigation }) {
     }
 
     function navigationCreateVideos() {
-        navigation.navigate('CadastroVideos');
+        navigation.navigate('CreateVideos');
     }
 
    

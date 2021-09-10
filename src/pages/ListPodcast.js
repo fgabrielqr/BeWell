@@ -16,11 +16,10 @@ export default function ListPodcast({navigation}) {
     const [podcastDelete, setPodcastDelete] = useState();
 
     async function handleDeletePodcast(id) {
-        console.log(id);      
         const headers = { 
            'authorization': 'Bearer ' + user.tokenUser,
-                   'Accept' : 'application/json',
-                   'Content-Type': 'application/json'  
+           'Accept' : 'application/json',
+           'Content-Type': 'application/json'  
        }; 
 
        try {

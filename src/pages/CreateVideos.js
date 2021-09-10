@@ -4,15 +4,32 @@ import { styles } from '../styles/cadastro';
 import { Input } from '../components/Input';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
+import { InputForm } from '../components/InputForm';
+
+
+// import form
+import { useForm, Controller } from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// YUP
+const schema = yup.object().shape({
+    nome: yup.string().required("Informe o nome"),
+    url: yup.string().required("Informe a URL"),
+    descricao: yup.string().required("Informe o Descrição"),
+
+});
 
 
 export default function CreateVideos({navigation }) {
 
     const {user, userLoading} = useAuth();
 
-    const [nome, setNome] = useState('');
-    const [url, setUrl] = useState('');
-    const [descricao, setDescricao] = useState('');
+
+    // constante retornadas pelo react-hook-form
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
     //function para redirecionar para a pagina da lista de videos
     function navigationToListVideos() {
@@ -21,11 +38,11 @@ export default function CreateVideos({navigation }) {
 
 
     //function fazer requisição a api 
-    async function handleCreateVideos(){
+    async function handleCreateVideos(data){
         var body = new FormData();
-        body.append('nome', nome);
-        body.append('url', url);
-        body.append('descricao', descricao);
+        body.append('nome', data.nome);
+        body.append('url', data.url);
+        body.append('descricao', data.descricao);
         body.append('id_usuario', user.id);
         
         const headers = { 
@@ -36,9 +53,6 @@ export default function CreateVideos({navigation }) {
 
       try {
         const responseVideos =  await api.post('videos/', body, { headers, body: body } );
-        setNome(''); 
-        setUrl('');
-        setDescricao('');
         Keyboard.dismiss(); 
         navigationToListVideos();
       }catch(error){
@@ -52,15 +66,24 @@ export default function CreateVideos({navigation }) {
         <View>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {text => setNome(text)}/>
+                <InputForm name='nome' control={control} 
+                    placeholder="Nome"
+                    error={ errors.nome && errors.nome.message } 
+                />
                 <Text style={styles.texto}>URL</Text>
-                <Input label='URL' onChangeText = {text => setUrl(text)}/>
-                <Text style={styles.texto}>Descrição</Text>
-                <Input label='Descricão' onChangeText = {text => setDescricao(text)}/>
+                <InputForm name='url' control={control} 
+                    placeholder="URL"
+                    error={ errors.url && errors.url.message } 
+                />
+                <Text style={styles.texto}>Descricão</Text>
+                <InputForm name='descricao' control={control} 
+                    placeholder="Descricão"
+                    error={ errors.descricao && errors.descricao.message } 
+                />
             </View>
 
             <View>
-                <TouchableOpacity style={styles.btn_login} onPress={handleCreateVideos}>
+                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit ( handleCreateVideos)}>
                     <Text style={styles.textBtn}>
                         Cadastrar
                     </Text>

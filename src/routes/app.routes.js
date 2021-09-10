@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack'
+import CreateVideos from '../pages/CreateVideos';
 import CadastroPodcast from '../pages/CadastroPodcast';
 import ListPodcast from '../pages/ListPodcast';
 import HomeRoutes from '../routes/home.routes';
@@ -42,6 +43,16 @@ export function AppRoutes(){
                         </Text>
                     </TouchableOpacity>
                 )  
+            }}/>
+
+            <AppStack.Screen name="CreateVideos"  component={CreateVideos} options={{ title: 'Cadastro de Videos', 
+                headerRight: () => (
+                    <TouchableOpacity onPress={logout} style={styles.btn_logout}>
+                        <Text>
+                            Sair
+                        </Text>
+                    </TouchableOpacity>
+                ) 
             }}/>
 
             <AppStack.Screen name="CadastroPodcast"  component={CadastroPodcast} options={{ title: 'Cadastro de Podcast', 

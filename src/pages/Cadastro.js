@@ -32,7 +32,25 @@ export default function Cadastro({ navigation }) {
 
     //function fazer requisição a api 
     async function handleCreateUser(data){
-        console.log("Texto enviado: " + JSON.stringify( data ) );
+        var params = new URLSearchParams();
+        params.append('email', data.email);
+        params.append('username', data.email);
+        params.append('password', data.password); 
+        params.append('first_name', data.first_name);
+        params.append('last_name', data.last_name);
+        params.append('crp', data.crp);
+        params.append('is_active', true);
+        params.append('is_staff', true);
+
+        try {
+            const response = await api.post('cadastro/', params);
+            Keyboard.dismiss(); 
+            navigation.navigate('Login')
+        }catch(error){
+            console.log(error);
+            Alert.alert('Error');
+      }
+
     }
 
     return (
