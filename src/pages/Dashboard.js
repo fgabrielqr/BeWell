@@ -3,6 +3,17 @@ import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/index';
 
 export default function Dashboard({ navigation }) {
+
+
+    //Videos
+    function navigationToVideos() {
+        navigation.navigate('Videos');
+    }
+
+    function navigationToPodcast() {
+        navigation.navigate('Podcast');
+    }
+
     function navigationToLogin() {
         navigation.navigate('Login');
     }
@@ -28,7 +39,8 @@ export default function Dashboard({ navigation }) {
                         />
                     </TouchableOpacity >
                     <Text style={styles.title1}>O que é asiedade?</Text>
-                    <TouchableOpacity style={styles.btn} onPress={navigationToLogin}>
+
+                    <TouchableOpacity style={styles.btn} onPress={navigationToPodcast}>
                         <Image
                             source={require('../assets/imagens/img3.png')}
                             style={styles.logo2}
@@ -38,13 +50,15 @@ export default function Dashboard({ navigation }) {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.btn} onPress={navigationToLogin}>
+                    <TouchableOpacity style={styles.btn} onPress={navigationToVideos}>
                         <Image
                             source={require('../assets/imagens/img2.png')}
                             style={styles.logo3}
                         />
                     </TouchableOpacity>
                     <Text style={styles.title1}>Vídeos</Text>
+
+
                     <TouchableOpacity style={styles.btn} onPress={navigationToLogin}>
                         <Image
                             source={require('../assets/imagens/img1.png')}
@@ -58,12 +72,13 @@ export default function Dashboard({ navigation }) {
             <View style={styles.viewButtons}>
                 <View>
                     <TouchableOpacity style={styles.btn_login} onPress={navigationToLogin}>
-                        <Text style={styles.login}>LOGIN</Text>
+                        <Text style={styles.login}>Login</Text>
                     </TouchableOpacity>
                 </View>
+                
                 <View>
                     <TouchableOpacity style={styles.btn_login} onPress={navigationToCadastro}>
-                        <Text style={styles.login}>CADASTRO</Text>
+                        <Text style={styles.login}>Cadastro</Text>
                     </TouchableOpacity>
                 </View>
             </View>

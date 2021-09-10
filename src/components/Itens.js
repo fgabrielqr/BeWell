@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef } from "react";
 import { Button, View, Text, StyleSheet, Alert , TouchableOpacity} from 'react-native';
 import { WebView } from 'react-native-webview';
 import YoutubePlayer from "react-native-youtube-iframe";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 export function Itens(props){
@@ -25,15 +26,12 @@ export function Itens(props){
                 <TouchableOpacity style={styles.btn}  onPress={() => props.navigation.navigate('UpdateVideos', props.data)}
 >
                     <Text style={styles.textBtn} >
-                        Editar
+                        <Icon name="edit"  size={25} color={"#666666"}/>
                     </Text>
                 </TouchableOpacity>
             
                 <TouchableOpacity style={styles.btn}  onPress={props.apagar}>
-
-                    <Text style={styles.textBtn} >
-                        Excluir
-                    </Text>
+                    <Icon name="trash-alt"  size={28} color={"#666666"}/>
                 </TouchableOpacity>
             </View>
         </View>
@@ -70,8 +68,9 @@ const styles = StyleSheet.create({
         flexDirection:'row', 
         justifyContent:'space-between',
         alignSelf:'flex-start',
-        padding:5,
     },
-   
+    btn:{
+        padding:10
+    }
    
 })

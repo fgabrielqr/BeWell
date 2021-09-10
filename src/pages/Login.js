@@ -16,6 +16,11 @@ export default function Login({ navigation }) {
     const {signWithBewell} = useAuth();
 
 
+    function navigationToCreatUser() {
+        navigation.navigate('Cadastro');
+    }
+
+
     //function fazer requisição a api 
     async function handleLogin(){
         
@@ -54,7 +59,7 @@ export default function Login({ navigation }) {
             <View>
                 <TouchableOpacity style={styles.btn_login} onPress={handleLogin}>
                     <Text style={styles.textBtn}>
-                        LOGIN
+                        Entrar
                     </Text>
                 </TouchableOpacity>
             </View>

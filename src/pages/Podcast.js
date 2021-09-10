@@ -1,23 +1,24 @@
 import React, { useState, useEffect} from 'react';
 import { Text, View, Alert, FlatList} from 'react-native';
 import api from '../service/api';
+import { WebView } from 'react-native-webview';
 import { StatusBar } from 'expo-status-bar';
 import  {ItensVideos}  from '../components/ItensVideos'
 
 
-export default function Videos({navigation}) {
+export default function Podcast({navigation}) {
 
-    const [video,setVideo] = useState([]);
+    const [podcast,setPodcast] = useState([]);
 
-    //function para listar videos 
-    async function handleListVideos(){
+    //function para listar podcasts 
+    async function handleListPodcast(){
        
       try {
         //Requisição a api 
-        const responseVideos =  await  api.get('todos-videos/');
+        const responsePodcast =  await  api.get('todos-podcasts/');
         //Pegando o data do response da api
-        const data = responseVideos.data
-        setVideo(data); //Setando o data para o video
+        const data = responsePodcast.data
+        setPodcast(data); //Setando o data para o podcast
     
       }catch(error){
             console.log(error);
@@ -26,7 +27,7 @@ export default function Videos({navigation}) {
     }
     
     useEffect( ()=>{
-        handleListVideos(); 
+        handleListPodcast(); 
     }, []);
 
     return (
@@ -35,7 +36,7 @@ export default function Videos({navigation}) {
             animated={true}
             backgroundColor="#bde4dd"/>
             <View>
-                <FlatList  data={video}  
+                <FlatList  data={podcast}  
                     keyExtractor={item => item.id.toString()} 
                     renderItem={ ({item}) =>  (
                         <ItensVideos data={item}/>

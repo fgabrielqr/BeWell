@@ -41,7 +41,7 @@ export default function UpdateVideos({route, navigation }) {
 
     }
 
-    
+
     return (
         <View>
             <View style={styles.form}>

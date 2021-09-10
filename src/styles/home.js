@@ -133,4 +133,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#000000',
         right: 150
     },
+    btn_logout:{
+        margin:10,
+    }
 });

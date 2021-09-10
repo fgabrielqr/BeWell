@@ -4,44 +4,35 @@ import { styles } from '../styles/cadastro';
 import { Input } from '../components/Input';
 import api from '../service/api';
 import { StatusBar } from 'expo-status-bar';
+import { InputForm } from '../components/InputForm';
+
+// import form
+import { useForm, Controller } from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// YUP
+const schema = yup.object().shape({
+    email: yup.string().required('informe o e-mail'),
+    password: yup.string().required('Informe a senha'),
+    first_name: yup.string().required("Informe o nome"),
+    last_name: yup.string().required("Informe o Sobrenome"),
+    crp: yup.string().required("Informe o crp"),
+
+});
+
 
 export default function Cadastro({ navigation }) {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [first_name, setFirst_name] = useState('');
-    const [last_name, setLast_name] = useState('');
-    const [crp, setCrp] = useState('');
+    // constante retornadas pelo react-hook-form
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
 
     //function fazer requisição a api 
-    async function handleCreateUser(){
-        var params = new URLSearchParams();
-        params.append('email', email);
-        params.append('username', email);
-        params.append('password', password); 
-        params.append('first_name', first_name);
-        params.append('last_name', last_name);
-        params.append('crp', crp);
-        params.append('is_active', true);
-        params.append('is_staff', true);
-
-        //is_active
-
-      try {
-            const response = await api.post('cadastro/', params);
-            console.log(response);
-            setEmail(''); 
-            setPassword('');
-            setFirst_name('');
-            setLast_name('');
-            setCrp(''); 
-            Keyboard.dismiss(); 
-            navigation.navigate('Login')
-      }catch(error){
-            console.log(error);
-            Alert.alert('Error');
-      }
+    async function handleCreateUser(data){
+        console.log("Texto enviado: " + JSON.stringify( data ) );
     }
 
     return (
@@ -50,22 +41,33 @@ export default function Cadastro({ navigation }) {
             animated={true}
             backgroundColor="#bde4dd"/>
             <View style={styles.form}>
-                <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {text => setFirst_name(text)}/>
-                <Text style={styles.texto}>Sobrenome</Text>
-                <Input label='Sobrenome' onChangeText = {text => setLast_name(text)}/>
-                <Text style={styles.texto}>CRP</Text>
-                <Input label='CRP' onChangeText = {text => setCrp(text)}/>
-                <Text style={styles.texto}>E-mail</Text>
-                <Input label='E-mail/Username' onChangeText = {text => setEmail(text)}/>
-                <Text style={styles.texto}>Senha</Text>
-                <Input label='Senha' senha={true} onChangeText = {text => setPassword(text)}/>
+                <InputForm name='first_name' control={control} 
+                    placeholder="Nome"
+                    error={ errors.first_name && errors.first_name.message } 
+                />
+                <InputForm name='last_name' control={control} 
+                    placeholder="Sobrenome"
+                    error={ errors.last_name && errors.last_name.message } 
+                />
+                <InputForm name='crp' control={control} 
+                    placeholder="Crp"
+                    error={ errors.crp && errors.crp.message } 
+                />
+                <InputForm name='email' control={control} 
+                    placeholder="Email"
+                    error={ errors.email && errors.email.message } 
+                />
+                <InputForm name='password' control={control} 
+                    placeholder="Senha"
+                    error={ errors.password && errors.password.message } 
+                    password={true}
+                />
             </View>
 
             <View>
-                <TouchableOpacity style={styles.btn_login} onPress={handleCreateUser}>
+                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit ( handleCreateUser )}>
                     <Text style={styles.textBtn}>
-                        CADASTRAR
+                        Cadastrar
                     </Text>
                 </TouchableOpacity>
             </View>
