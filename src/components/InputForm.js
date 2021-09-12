@@ -13,6 +13,7 @@ export function InputForm({control, name,error, ...rest }){
                
                     <TextInput style={[styles.inputs, error ? styles.inputError : ""]} 
                       onBlur={onBlur} {...rest}
+                      value={value}
                       onChangeText={onChange}/>  
               
                 )}

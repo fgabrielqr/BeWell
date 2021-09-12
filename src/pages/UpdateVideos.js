@@ -4,12 +4,33 @@ import { styles } from '../styles/cadastro';
 import { Input } from '../components/Input';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
+import { InputForm } from '../components/InputForm';
 
+
+// import form
+import { useForm, Controller } from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// YUP
+const schema = yup.object().shape({
+    nome: yup.string().required("Informe o nome"),
+    url: yup.string().required("Informe a URL"),
+    descricao: yup.string().required("Informe o Descrição"),
+
+});
 
 export default function UpdateVideos({route, navigation }) {
 
     const [video, setVideo] = useState(route.params ? route.params : {})
     const {user, logout, userLoading} = useAuth();
+
+
+    // constante retornadas pelo react-hook-form
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+
 
     //navegation para ir para tela do Listagem de videos
     function navigationToListVideos() {
@@ -18,12 +39,13 @@ export default function UpdateVideos({route, navigation }) {
 
 
     //function fazer requisição a api 
-    async function UpdateVideos(){
+    async function UpdateVideos(data){
         var body = new FormData();
-        body.append('nome', video.nome);
-        body.append('url', video.url);
-        body.append('descricao', video.descricao); 
-        body.append('id_usuario', video.id_usuario);
+        body.append('nome', data.nome);
+        body.append('url', data.url);
+        body.append('descricao', data.descricao); 
+        body.append('id_usuario', user.id);
+    
     
         const headers = { 
             'authorization': 'Bearer ' + user.tokenUser,
@@ -45,16 +67,29 @@ export default function UpdateVideos({route, navigation }) {
     return (
         <View>
             <View style={styles.form}>
+              
             <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {nome => setVideo({...video, nome})}   value={video.nome}/>
+                <InputForm name='nome' control={control} 
+                    placeholder="Nome"
+                    defaultValue={video.nome}
+                    error={ errors.nome && errors.nome.message } 
+                />
                 <Text style={styles.texto}>URL</Text>
-                <Input label='URL' onChangeText = {url => setVideo({...video, url})}  value={video.url}/>
-                <Text style={styles.texto}>Descrição</Text>
-                <Input label='Descricão' onChangeText = {descricao => setVideo({...video, descricao})}  value={video.descricao}/>
+                <InputForm name='url' control={control} 
+                    placeholder="URL"
+                    defaultValue={video.url}
+                    error={ errors.url && errors.url.message } 
+                />
+                <Text style={styles.texto}>Descricão</Text>
+                <InputForm name='descricao' control={control} 
+                    placeholder="Descricão"
+                    defaultValue={video.descricao}
+                    error={ errors.descricao && errors.descricao.message } 
+                />
            </View>
 
-            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={UpdateVideos}>
+           <View>
+                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit (UpdateVideos)}>
                     <Text style={styles.textBtn}>
                         Editar
                     </Text>

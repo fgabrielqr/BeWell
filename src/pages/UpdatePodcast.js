@@ -1,15 +1,35 @@
 import React, { useState, useEffect, useContext} from 'react';
 import { Text, View, TouchableOpacity, Alert} from 'react-native';
 import { styles } from '../styles/cadastro';
-import { Input } from '../components/Input';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
+import { InputForm } from '../components/InputForm';
 
+
+// import form
+import { useForm, Controller } from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// YUP
+const schema = yup.object().shape({
+    nome: yup.string().required("Informe o nome"),
+    url: yup.string().required("Informe a URL"),
+    descricao: yup.string().required("Informe o Descrição"),
+
+});
 
 export default function UpdatePodcast({route, navigation }) {
 
     const [podcast, setPodecast] = useState(route.params ? route.params : {})
     const {user, logout, userLoading} = useAuth();
+
+
+    // constante retornadas pelo react-hook-form
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+
 
     //navegation para ir para tela do Listagem de podcast
     function navigationToListPodcast() {
@@ -18,17 +38,17 @@ export default function UpdatePodcast({route, navigation }) {
 
 
     //function fazer requisição a api 
-    async function UpdatePodcast(){
+    async function UpdatePodcast(data){
         var body = new FormData();
-        body.append('nome', podcast.nome);
-        body.append('url', podcast.url);
-        body.append('descricao', podcast.descricao); 
-        body.append('id_usuario', podcast.id_usuario);
+        body.append('nome', data.nome);
+        body.append('url', data.url);
+        body.append('descricao', data.descricao); 
+        body.append('id_usuario', user.id);
     
         const headers = { 
             'authorization': 'Bearer ' + user.tokenUser,
-                    'Accept' : 'application/json',
-                    'Content-Type': 'application/json'  
+            'Accept' : 'application/json',
+            'Content-Type': 'application/json'  
         };
 
         try {
@@ -46,15 +66,27 @@ export default function UpdatePodcast({route, navigation }) {
         <View>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {nome => setPodecast({...podcast, nome})}   value={podcast.nome}/>
+                <InputForm name='nome' control={control} 
+                    placeholder="Nome"
+                    defaultValue={podcast.nome}
+                    error={ errors.nome && errors.nome.message } 
+                />
                 <Text style={styles.texto}>URL</Text>
-                <Input label='URL' onChangeText = {url => setPodecast({...podcast, url})}  value={podcast.url}/>
-                <Text style={styles.texto}>Descrição</Text>
-                <Input label='Descricão' onChangeText = {descricao => setPodecast({...podcast, descricao})}  value={podcast.descricao}/>
+                <InputForm name='url' control={control} 
+                    placeholder="URL"
+                    defaultValue={podcast.url}
+                    error={ errors.url && errors.url.message } 
+                />
+                <Text style={styles.texto}>Descricão</Text>
+                <InputForm name='descricao' control={control} 
+                    placeholder="Descricão"
+                    defaultValue={podcast.descricao}
+                    error={ errors.descricao && errors.descricao.message } 
+                />
             </View>
 
             <View>
-                <TouchableOpacity style={styles.btn_login} onPress={UpdatePodcast}>
+                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit (UpdatePodcast)}>
                     <Text style={styles.textBtn}>
                         Editar
                     </Text>
