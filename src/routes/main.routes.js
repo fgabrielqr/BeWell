@@ -5,6 +5,5 @@ import { useAuth } from '../contexts/Auth';
 export function MainRoutes(){
 
     const {user}= useAuth()
-    console.log(user.first_name)
     return user.first_name ? <AppRoutes/>: <LoginRoutes/>;
 }

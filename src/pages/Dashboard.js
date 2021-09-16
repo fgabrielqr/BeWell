@@ -5,21 +5,35 @@ import { styles } from '../styles/index';
 export default function Dashboard({ navigation }) {
 
 
-    //Videos
+    //navegation para pagina de videos 
     function navigationToVideos() {
         navigation.navigate('Videos');
     }
 
+    //navegation para pagina de podcast 
     function navigationToPodcast() {
         navigation.navigate('Podcast');
     }
 
-    function navigationToLogin() {
-        navigation.navigate('Login');
+    //navegation para pagina de Autocuidado 
+    function navigationToAutocuidado() {
+        navigation.navigate('Autocuidado');
     }
 
+    //navegation para pagina de Ansiedade 
+    function navigationToAnsiedade() {
+        navigation.navigate('Ansiedade');
+    }
+
+    //navegation para pagina de Cadastro 
     function navigationToCadastro() {
         navigation.navigate('Cadastro');
+    }
+
+
+    //navegation para pagina de Login 
+    function navigationToLogin() {
+        navigation.navigate('Login');
     }
     return (
         <View style={styles.container}>
@@ -32,7 +46,7 @@ export default function Dashboard({ navigation }) {
 
             <View style={styles.viewFuncionalidades}>
                 <View>
-                    <TouchableOpacity style={styles.btn} onPress={navigationToLogin}>
+                    <TouchableOpacity style={styles.btn} onPress={navigationToAnsiedade}>
                         <Image
                             source={require('../assets/imagens/img4.png')}
                             style={styles.logo1}
@@ -59,7 +73,7 @@ export default function Dashboard({ navigation }) {
                     <Text style={styles.title1}>Vídeos</Text>
 
 
-                    <TouchableOpacity style={styles.btn} onPress={navigationToLogin}>
+                    <TouchableOpacity style={styles.btn} onPress={navigationToAutocuidado}>
                         <Image
                             source={require('../assets/imagens/img1.png')}
                             style={styles.logo4}

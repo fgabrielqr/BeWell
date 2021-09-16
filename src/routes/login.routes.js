@@ -21,7 +21,7 @@ export function LoginRoutes(){
             <LoginStack.Screen name='Ansiedade' component={Ansiedade} options={{ title: 'O que é ansiedade?' }} />
             <LoginStack.Screen name='Videos' component={Videos} options={{ title: 'Vídeos' }} />
             <LoginStack.Screen name='Podcast' component={Podcast} options={{ title: 'Podcast' }} />
-            <LoginStack.Screen name='Autocuidado' component={Autocuidado} options={{ title: 'Autocudados' }} />
+            <LoginStack.Screen name='Autocuidado' component={Autocuidado} options={{ title: 'Autocuidados' }} />
         </LoginStack.Navigator>
     )
 }
