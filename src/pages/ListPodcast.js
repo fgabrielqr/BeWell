@@ -113,14 +113,6 @@ export default function ListPodcast({navigation}) {
                     ) }
                 />
             </View>
-
-            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={logout}>
-                    <Text style={styles.textBtn}>
-                        Logout
-                    </Text>
-                </TouchableOpacity>
-            </View>
         </View>
     )
 }
