@@ -48,13 +48,17 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    btns:{
+        flex: 1,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end'
+    },
     btn_login: {
-        width: 150,
-        height: 50,
-        padding: 0,
-        borderRadius: 5,
+        width: 70,
+        height: 70,
+        borderRadius: 50,
+        margin: 5,
         backgroundColor: '#bde4dd',
-        margin: 30,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -135,5 +139,9 @@ export const styles = StyleSheet.create({
     },
     btn_logout:{
         margin:10,
+    },
+    textBtn:{
+        fontSize: 25,
+        fontWeight: 'bold'
     }
 });

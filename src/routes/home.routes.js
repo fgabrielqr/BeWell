@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 export default function HomeRoutes() {
     return (
         <Tab.Navigator inactiveColor={'black'} activeColor={'#bde4dd'} >
-            <Tab.Screen name="Home" component={Home} options={{
+            <Tab.Screen name="Homes" component={Home} options={{
                 headerShown: false,
                 tabBarLabel: 'Home',
                 tabBarIcon: ({ color, size }) => (

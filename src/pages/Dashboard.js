@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/index';
+import { StatusBar } from 'expo-status-bar';
 
 export default function Dashboard({ navigation }) {
 
@@ -37,6 +38,9 @@ export default function Dashboard({ navigation }) {
     }
     return (
         <View style={styles.container}>
+            <StatusBar
+                animated={true}
+                backgroundColor="#bde4dd" />
             <View style={styles.viewLogo}>
                 <Image
                     source={require('../assets/imagens/img5.png')}
@@ -89,7 +93,7 @@ export default function Dashboard({ navigation }) {
                         <Text style={styles.login}>Login</Text>
                     </TouchableOpacity>
                 </View>
-                
+
                 <View>
                     <TouchableOpacity style={styles.btn_login} onPress={navigationToCadastro}>
                         <Text style={styles.login}>Cadastro</Text>

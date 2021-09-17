@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     viewLogo: {
+        flex: 1,
         backgroundColor: '#bde4dd',
         height: 200,
         width: '100%',
@@ -26,15 +27,14 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     viewFuncionalidades: {
-        height: 480,
-        backgroundColor: '#fff',
+        flex: 2,
         flexDirection: "row",
         alignItems: 'center',
-        justifyContent: 'space-evenly'
+        justifyContent: 'center'
     },
     viewButtons: {
-        backgroundColor: '#fff',
-        height: 150,
+        height: '50%',
+        height: 100,
         flexDirection: "row",
         alignItems: 'center',
         justifyContent: 'space-evenly'
@@ -66,6 +66,7 @@ export const styles = StyleSheet.create({
     logo: {
         width: 150,
         height: 250,
+            
     },
     logo1: {
         width: 70,
