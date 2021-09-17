@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function MenuPodcast({ navigation }) {
 
-    const {user, logout, userLoading} = useAuth();
+    const { user, logout, userLoading } = useAuth();
 
     function navigationToListPodcast() {
         navigation.navigate('ListPodcast');
@@ -16,27 +16,25 @@ export default function MenuPodcast({ navigation }) {
         navigation.navigate('CadastroPodcast');
     }
 
-   
-    return (
-        <View>
-            <StatusBar
-            animated={true}
-            backgroundColor="#bde4dd"/>
-            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={navigationToListPodcast}>
-                    <Text style={styles.textBtn}>
-                        Meus Podcasts
-                    </Text>
-                </TouchableOpacity>
-            </View>
 
-            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={navigationCreatePodcast}>
-                    <Text style={styles.textBtn}>
-                        Adicionar
-                    </Text>
-                </TouchableOpacity>
-            </View>
+    return (
+        <View style={styles.btns}>
+            <StatusBar
+                animated={true}
+                backgroundColor="#bde4dd" />
+
+            <TouchableOpacity style={styles.btn_login} onPress={navigationToListPodcast}>
+                <Text>
+                    Meus Podcasts
+                </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.btn_login} onPress={navigationCreatePodcast}>
+                <Text style={styles.textBtn}>
+                    +
+                </Text>
+            </TouchableOpacity>
+
         </View>
     );
 }
