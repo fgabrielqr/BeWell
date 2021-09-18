@@ -45,5 +45,3 @@ export default function Videos({ navigation }) {
         </View>
     )
 }
-
-

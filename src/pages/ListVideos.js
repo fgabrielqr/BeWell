@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext} from 'react';
 import { Text, View, Modal, TouchableOpacity, Alert, FlatList, StyleSheet, TouchableHighlight} from 'react-native';
-import { styles } from '../styles/cadastro';
+import { styles } from '../styles/home';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { WebView } from 'react-native-webview';
 import { StatusBar } from 'expo-status-bar';
 import  {Itens}  from '../components/Itens'
-
+import  {FabButton}  from '../components/FabButton'
 
 export default function ListVideos({navigation}) {
 
@@ -35,6 +35,11 @@ export default function ListVideos({navigation}) {
 
     function navigationToListVideos() {
         navigation.navigate('ListVideos');
+    }
+
+
+    function navigationCreateVideos() {
+        navigation.navigate('CreateVideos');
     }
 
     async function handleModalVideos(id) {
@@ -69,8 +74,12 @@ export default function ListVideos({navigation}) {
     }, []);
 
     return (
-        <View>
+        <View style={style.container}>
             <StatusBar
+            animated={true}
+            backgroundColor="#bde4dd"/>
+       
+       <StatusBar
             animated={true}
             backgroundColor="#bde4dd"/>
                 <Modal
@@ -113,58 +122,23 @@ export default function ListVideos({navigation}) {
                     ) }
                 />
             </View>
+            <FabButton
+                style={{bottom: 80, right:60}}
+                create={ () => navigationCreateVideos()}
+            />
+
         </View>
     )
 }
 
 const style = StyleSheet.create({
-    centeredView: {
-      width: '100%',
-      height: '100%',
-      justifyContent: "center",
-      alignItems: "center",
+    container:{
+        flex:1
     },
-    modalView: {
-      margin: 20,
-      backgroundColor: "white",
-      borderRadius: 5,
-      padding: 35,
-      justifyContent: "space-evenly",
-      alignItems: "center",
-      shadowColor: "#000",
-      width: '50%',
-      height: '20%',
-      shadowOffset: {
-        width: 0,
-        height: 2
+    actionButtonIcon: {
+        fontSize: 20,
+        height: 22,
+        color: 'white',
       },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
-    modalText:{
-
-    },
-    btns_modal:{
-        flexDirection: 'row',
-        alignItems:'center',
-    },
-    button: {
-        borderRadius: 5,
-        elevation: 2
-    },
-    buttonOpen:{
-        backgroundColor:'#23cf5c', 
-        margin: 20,
-        padding:10
-    },
-    buttonClose:{
-        backgroundColor:'#d12c38',
-        margin: 20,
-        padding:10
-
-    }
-    
 
   });
-
