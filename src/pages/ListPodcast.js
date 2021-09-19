@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/Auth';
 import { WebView } from 'react-native-webview';
 import { StatusBar } from 'expo-status-bar';
 import  {Item}  from '../components/Item'
+import  {FabButton}  from '../components/FabButton'
 
 
 export default function ListPodcast({navigation}) {
@@ -34,6 +35,10 @@ export default function ListPodcast({navigation}) {
 
     function navigationToListPodcast() {
         navigation.navigate('ListPodcast');
+    }
+
+    function navigationCreatePodcast() {
+        navigation.navigate('CadastroPodcast');
     }
 
     async function handleModalPodcast(id) {
@@ -69,16 +74,16 @@ export default function ListPodcast({navigation}) {
     }, []);
 
     return (
-        <View>
+        <View style={style.container}>
             <StatusBar
             animated={true}
             backgroundColor="#bde4dd"/>
+            <View>
                 <Modal
                     animationType="slide"
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                    Alert.alert("O Modal foi fechado.");
                     setModalVisible(!modalVisible);
                     }}>
                     <View style={style.centeredView}>
@@ -103,7 +108,7 @@ export default function ListPodcast({navigation}) {
                         </View>
                     </View>
                 </Modal>
-    
+            </View>
 
             <View>
                 <FlatList  data={podcast}  
@@ -113,11 +118,19 @@ export default function ListPodcast({navigation}) {
                     ) }
                 />
             </View>
+
+            <FabButton
+                style={{bottom: 80, right:60}}
+                    create={ () => navigationCreatePodcast()}
+            />
         </View>
     )
 }
 
 const style = StyleSheet.create({
+    container:{
+        flex:1
+    },
     centeredView: {
       width: '100%',
       height: '100%',
@@ -166,5 +179,4 @@ const style = StyleSheet.create({
     }
     
 
-  });
-
+});

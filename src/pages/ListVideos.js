@@ -83,7 +83,6 @@ export default function ListVideos({navigation}) {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                    Alert.alert("O Modal foi fechado.");
                     setModalVisible(!modalVisible);
                     }}>
                     <View style={style.centeredView}>

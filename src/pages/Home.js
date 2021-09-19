@@ -13,11 +13,11 @@ export default function Home({ navigation }) {
     }
 
     function navigationToVideo() {
-        navigation.navigate('MenuVideos');
+        navigation.navigate('ListVideos');
     }
 
     function navigationToPodcast() {
-        navigation.navigate('MenuPodcast');
+        navigation.navigate('ListPodcast');
     }
 
     function navigationToAutocuidado() {
