@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext} from 'react';
 import { Text, View, Modal, TouchableOpacity, Alert, FlatList, StyleSheet, TouchableHighlight} from 'react-native';
-import { styles } from '../styles/home';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
-import { WebView } from 'react-native-webview';
 import { StatusBar } from 'expo-status-bar';
 import  {Itens}  from '../components/Itens'
 import  {FabButton}  from '../components/FabButton'
@@ -16,7 +14,7 @@ export default function ListVideos({navigation}) {
     const [videosDelete, setVideosDelete] = useState();
 
     async function handleDeleteVideos(id) {
-        console.log(id);      
+
         const headers = { 
             'authorization': 'Bearer ' + user.tokenUser,
             'Accept' : 'application/json',
@@ -25,8 +23,8 @@ export default function ListVideos({navigation}) {
 
        try {
            const responseVideos =  await api.delete('videos/' +id+'/', { headers} );
+           setModalVisible(!modalVisible);
            navigationToListVideos();
-           setModalVisible(!modalVisible)
        }catch(error){
            console.log(error);
            Alert.alert('Error');
@@ -79,9 +77,7 @@ export default function ListVideos({navigation}) {
             animated={true}
             backgroundColor="#bde4dd"/>
        
-       <StatusBar
-            animated={true}
-            backgroundColor="#bde4dd"/>
+            <View>
                 <Modal
                     animationType="slide"
                     transparent={true}
@@ -112,7 +108,7 @@ export default function ListVideos({navigation}) {
                         </View>
                     </View>
                 </Modal>
-    
+            </View>
 
             <View>
                 <FlatList  data={videos}  
@@ -122,10 +118,13 @@ export default function ListVideos({navigation}) {
                     ) }
                 />
             </View>
+            
             <FabButton
                 style={{bottom: 80, right:60}}
-                create={ () => navigationCreateVideos()}
+                    create={ () => navigationCreateVideos()}
             />
+         
+            
 
         </View>
     )
@@ -135,10 +134,52 @@ const style = StyleSheet.create({
     container:{
         flex:1
     },
-    actionButtonIcon: {
-        fontSize: 20,
-        height: 22,
-        color: 'white',
+    centeredView: {
+      width: '100%',
+      height: '100%',
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 5,
+      padding: 35,
+      justifyContent: "space-evenly",
+      alignItems: "center",
+      shadowColor: "#000",
+      width: '50%',
+      height: '20%',
+      shadowOffset: {
+        width: 0,
+        height: 2
       },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    modalText:{
 
-  });
+    },
+    btns_modal:{
+        flexDirection: 'row',
+        alignItems:'center',
+    },
+    button: {
+        borderRadius: 5,
+        elevation: 2
+    },
+    buttonOpen:{
+        backgroundColor:'#23cf5c', 
+        margin: 20,
+        padding:10
+    },
+    buttonClose:{
+        backgroundColor:'#d12c38',
+        margin: 20,
+        padding:10
+
+    }
+    
+
+});
