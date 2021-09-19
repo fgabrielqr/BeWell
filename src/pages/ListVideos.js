@@ -29,13 +29,14 @@ export default function ListVideos({navigation}) {
            console.log(error);
            Alert.alert('Error');
        }
-   }
+    }
 
+    //navegation para o create list
     function navigationToListVideos() {
         navigation.navigate('ListVideos');
     }
 
-
+    //navegation para o create
     function navigationCreateVideos() {
         navigation.navigate('CreateVideos');
     }
