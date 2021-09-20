@@ -9,6 +9,7 @@ const AuthContext = createContext();
 function AuthProvider({children}){
     const [user,setUser] = useState({});
     const [userLoading, setUserLoading] = useState(true);
+    
 
     const keyAsyncStorage = "@bewell:user";
 

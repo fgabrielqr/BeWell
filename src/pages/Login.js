@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useContext} from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert, Keyboard } from 'react-native';
+import React, { useState} from 'react';
+import { Text, View, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { styles } from '../styles/login';
-import { Input } from '../components/Input';
-import api from '../service/api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from '../contexts/Auth';
 import { StatusBar } from 'expo-status-bar';
 import { InputForm } from '../components/InputForm';
@@ -29,11 +26,7 @@ export default function Login({ navigation }) {
     });
 
     const {signWithBewell} = useAuth();
-
-
-    function navigationToCreatUser() {
-        navigation.navigate('Cadastro');
-    }
+    const[isLoading,setIsLoading] = useState(false);
 
 
     //function fazer requisição a api 
@@ -41,18 +34,22 @@ export default function Login({ navigation }) {
         
        
       try{
-          return await signWithBewell(data.email,data.password);
+            setIsLoading(true);
+            return await signWithBewell(data.email,data.password);
        }catch(error){
-           console.log(error);
-           Alert.alert("Erro");
+            setIsLoading(false);
+            console.log(error);
+            Alert.alert("Erro");
        } 
     }
 
-    async function clear() {
-        await AsyncStorage.clear();
-    }
-  
-    
+    if(isLoading){
+        return(
+            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+            </View>
+        )
+    } 
 
     return (
         <View>

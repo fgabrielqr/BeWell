@@ -41,6 +41,7 @@ export default function ListVideos({navigation}) {
         navigation.navigate('CreateVideos');
     }
 
+    //handle modal de videos
     async function handleModalVideos(id) {
         setModalVisible(true);
         setVideosDelete(id);
