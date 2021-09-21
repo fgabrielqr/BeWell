@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useContext} from 'react';
-import { Text, View, Modal, TouchableOpacity, Alert, FlatList, StyleSheet, TouchableHighlight} from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { Text, View, Modal, Alert, FlatList, StyleSheet, TouchableHighlight} from 'react-native';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { StatusBar } from 'expo-status-bar';
 import  {Itens}  from '../components/Itens'
 import  {FabButton}  from '../components/FabButton'
+import { style } from '../styles/listarVideo';
 
 export default function ListVideos({navigation}) {
 
-    const {user, logout, userLoading} = useAuth();
+    const {user} = useAuth();
     const [videos,setVideos] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [videosDelete, setVideosDelete] = useState();
@@ -78,7 +79,6 @@ export default function ListVideos({navigation}) {
             <StatusBar
             animated={true}
             backgroundColor="#bde4dd"/>
-       
             <View>
                 <Modal
                     animationType="slide"
@@ -90,7 +90,6 @@ export default function ListVideos({navigation}) {
                     <View style={style.centeredView}>
                         <View style={style.modalView}>
                             <Text style={style.modalText}>Deseja Exluir ?</Text>
-
                             <View style={style.btns_modal}>
                                 <TouchableHighlight
                                     style={[style.button, style.buttonClose]}
@@ -105,12 +104,10 @@ export default function ListVideos({navigation}) {
                                     <Text style={style.textStyle}>Sim</Text>
                                 </TouchableHighlight>
                             </View>
-        
                         </View>
                     </View>
                 </Modal>
             </View>
-
             <View>
                 <FlatList  data={videos}  
                     keyExtractor={item => item.id.toString()} 
@@ -119,68 +116,10 @@ export default function ListVideos({navigation}) {
                     ) }
                 />
             </View>
-            
             <FabButton
                 style={{bottom: 80, right:60}}
                     create={ () => navigationCreateVideos()}
             />
-         
-            
-
         </View>
     )
 }
-
-const style = StyleSheet.create({
-    container:{
-        flex:1
-    },
-    centeredView: {
-      width: '100%',
-      height: '100%',
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    modalView: {
-      margin: 20,
-      backgroundColor: "white",
-      borderRadius: 5,
-      padding: 35,
-      justifyContent: "space-evenly",
-      alignItems: "center",
-      shadowColor: "#000",
-      width: '50%',
-      height: '20%',
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
-    modalText:{
-
-    },
-    btns_modal:{
-        flexDirection: 'row',
-        alignItems:'center',
-    },
-    button: {
-        borderRadius: 5,
-        elevation: 2
-    },
-    buttonOpen:{
-        backgroundColor:'#23cf5c', 
-        margin: 20,
-        padding:10
-    },
-    buttonClose:{
-        backgroundColor:'#d12c38',
-        margin: 20,
-        padding:10
-
-    }
-    
-
-});

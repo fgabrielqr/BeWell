@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function Home({ navigation }) {
 
-    const {user, logout, userLoading} = useAuth();
+    const { user, logout, userLoading } = useAuth();
 
     function navigationToAnsiedade() {
         navigation.navigate('Ansiedade');
@@ -26,25 +26,24 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
             <StatusBar
-            animated={true}
-            backgroundColor="#bde4dd"/>
+                animated={true}
+                backgroundColor="#bde4dd" />
             <View style={styles.viewLogo}>
                 <View></View>
                 <View style={styles.viewLogo1}>
                     <Text style={styles.ti}>
-                        Olá,  
+                        Olá,
                     </Text>
                     <Text style={styles.ti}>
                         {user.first_name}
                     </Text>
-                    
+
                 </View>
                 <Image
                     source={require('../assets/imagens/img5.png')}
                     style={styles.logo}
                 />
             </View>
-
             <View style={styles.viewFuncionalidades}>
                 <View>
                     <TouchableOpacity style={styles.btn} onPress={navigationToAnsiedade}>
@@ -62,7 +61,6 @@ export default function Home({ navigation }) {
                     </TouchableOpacity>
                     <Text style={styles.title1}>Podcast</Text>
                 </View>
-
                 <View>
                     <TouchableOpacity style={styles.btn} onPress={navigationToVideo}>
                         <Image

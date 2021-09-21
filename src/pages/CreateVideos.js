@@ -1,14 +1,12 @@
-import React, { useState} from 'react';
-import { Keyboard, Text, View, TouchableOpacity, Alert} from 'react-native';
+import React from 'react';
+import { Keyboard, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { styles } from '../styles/cadastro';
-import { Input } from '../components/Input';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { InputForm } from '../components/InputForm';
 
-
 // import form
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -20,11 +18,9 @@ const schema = yup.object().shape({
 
 });
 
+export default function CreateVideos({ navigation }) {
 
-export default function CreateVideos({navigation }) {
-
-    const {user, userLoading} = useAuth();
-
+    const { user, userLoading } = useAuth();
 
     // constante retornadas pelo react-hook-form
     const { control, handleSubmit, formState: { errors } } = useForm({
@@ -36,54 +32,48 @@ export default function CreateVideos({navigation }) {
         navigation.navigate('ListVideos');
     }
 
-
     //function fazer requisição a api 
-    async function handleCreateVideos(data){
+    async function handleCreateVideos(data) {
         var body = new FormData();
         body.append('nome', data.nome);
         body.append('url', data.url);
         body.append('descricao', data.descricao);
         body.append('id_usuario', user.id);
-        
-        const headers = { 
+
+        const headers = {
             'authorization': 'Bearer ' + user.tokenUser,
-            'Accept' : 'application/json',
-            'Content-Type': 'application/json'  
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         };
 
-      try {
-        const responseVideos =  await api.post('videos/', body, { headers, body: body } );
-        Keyboard.dismiss(); 
-        navigationToListVideos();
-      }catch(error){
-        console.log(error);
-        Alert.alert('Error');
-      }
+        try {
+            const responseVideos = await api.post('videos/', body, { headers, body: body });
+            Keyboard.dismiss();
+            navigationToListVideos();
+        } catch (error) {
+            console.log(error);
+            Alert.alert('Error');
+        }
     }
 
-    
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
-                <InputForm name='nome' control={control} 
-                    placeholder="Nome"
-                    error={ errors.nome && errors.nome.message } 
+                <InputForm name='nome' control={control}
+                    error={errors.nome && errors.nome.message} placeholder="Ex: Jubileu"
                 />
                 <Text style={styles.texto}>URL</Text>
-                <InputForm name='url' control={control} 
-                    placeholder="URL"
-                    error={ errors.url && errors.url.message } 
+                <InputForm name='url' control={control} placeholder="Ex: https://youtu.be/bwLaIImg5_8"
+                    error={errors.url && errors.url.message}
                 />
                 <Text style={styles.texto}>Descricão</Text>
-                <InputForm name='descricao' control={control} 
-                    placeholder="Descricão"
-                    error={ errors.descricao && errors.descricao.message } 
+                <InputForm name='descricao' control={control} placeholder="Ex: Ansiedade não é brincadeira"
+                    error={errors.descricao && errors.descricao.message}
                 />
             </View>
-
-            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit ( handleCreateVideos)}>
+            <View style={styles.btn}>
+                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit(handleCreateVideos)}>
                     <Text style={styles.textBtn}>
                         Cadastrar
                     </Text>

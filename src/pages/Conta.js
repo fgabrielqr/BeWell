@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View, TouchableOpacity} from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { useAuth } from '../contexts/Auth';
 import { styles } from '../styles/cadastro';
 
-export default function Conta({navigation}) {
+export default function Conta({ navigation }) {
 
-    const {user, logout, userLoading} = useAuth();
+    const { user } = useAuth();
 
     function navigationToUdateUser() {
         navigation.navigate('UpdateUser', user);
