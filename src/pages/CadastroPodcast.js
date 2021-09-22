@@ -51,7 +51,7 @@ export default function CadastroPodcast({navigation }) {
         };
 
       try {
-        const responsePodcast =  await api.post('podcasts/', body, { headers, body: body } );
+        const responsePodcast =  await api.post('podcasts/', body, { headers} );
         Keyboard.dismiss(); 
         navigationToListPodcast();
       }catch(error){

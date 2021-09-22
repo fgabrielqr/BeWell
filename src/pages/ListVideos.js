@@ -12,7 +12,19 @@ export default function ListVideos({navigation}) {
     const [videos,setVideos] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [videosDelete, setVideosDelete] = useState();
+    const [load,setLoad] = useState(true);
+    const[isLoading,setIsLoading] = useState(false);
 
+
+    if(isLoading){
+        return(
+            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+            </View>
+        )
+    } 
+
+    //function para deletar videos
     async function handleDeleteVideos(id) {
 
         const headers = { 
@@ -31,7 +43,7 @@ export default function ListVideos({navigation}) {
        }
     }
 
-    //navegation para o create list
+    //navegation para a lista de videos
     function navigationToListVideos() {
         navigation.navigate('ListVideos');
     }
@@ -70,8 +82,9 @@ export default function ListVideos({navigation}) {
     }
     
     useEffect( ()=>{
-        handleListVideos(); 
-    }, []);
+        handleListVideos();
+        navigation.addListener('focus', ()=>setLoad(!load));
+    }, [load, navigation]);
 
     return (
         <View style={style.container}>

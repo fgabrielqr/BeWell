@@ -24,6 +24,15 @@ export default function UpdateVideos({route, navigation }) {
 
     const [video, setVideo] = useState(route.params ? route.params : {})
     const {user, logout, userLoading} = useAuth();
+    const[isLoading,setIsLoading] = useState(false);
+
+    if(isLoading){
+        return(
+            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+            </View>
+        )
+    } 
 
 
     // constante retornadas pelo react-hook-form

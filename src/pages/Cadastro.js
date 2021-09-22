@@ -23,6 +23,15 @@ const schema = yup.object().shape({
 
 
 export default function Cadastro({ navigation }) {
+    const[isLoading,setIsLoading] = useState(false);
+
+    if(isLoading){
+        return(
+            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+            </View>
+        )
+    } 
 
     // constante retornadas pelo react-hook-form
     const { control, handleSubmit, formState: { errors } } = useForm({

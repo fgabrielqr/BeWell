@@ -15,7 +15,19 @@ export default function ListPodcast({navigation}) {
     const [podcast,setPodcast] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [podcastDelete, setPodcastDelete] = useState();
+    const [load,setLoad] = useState(true);
+    const[isLoading,setIsLoading] = useState(false);
 
+    
+    if(isLoading){
+        return(
+            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+            </View>
+        )
+    } 
+
+    //Função para deletar podcast
     async function handleDeletePodcast(id) {
         const headers = { 
            'authorization': 'Bearer ' + user.tokenUser,
@@ -31,16 +43,19 @@ export default function ListPodcast({navigation}) {
            console.log(error);
            Alert.alert('Error');
        }
-   }
+    }
 
+    //Função para naveção para lista de podcast
     function navigationToListPodcast() {
         navigation.navigate('ListPodcast');
     }
 
+    //Função para naveção para cadastro de podcast
     function navigationCreatePodcast() {
         navigation.navigate('CadastroPodcast');
     }
 
+    //Função para o model
     async function handleModalPodcast(id) {
         console.log(id);      
         setModalVisible(true);
@@ -70,8 +85,9 @@ export default function ListPodcast({navigation}) {
     }
     
     useEffect( ()=>{
-        handleListPodcast(); 
-    }, []);
+        handleListPodcast();
+        navigation.addListener('focus', ()=>setLoad(!load));
+    }, [load, navigation]);
 
     return (
         <View style={style.container}>

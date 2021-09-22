@@ -7,6 +7,15 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function UpdateUser({route, navigation }) {
     const [user, setUser] = useState(route.params ? route.params : {})
+    const[isLoading,setIsLoading] = useState(false);
+
+    if(isLoading){
+        return(
+            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+            </View>
+        )
+    } 
 
 
     //function fazer requisição a api 
