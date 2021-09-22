@@ -31,7 +31,7 @@ export default function ListPodcast({ navigation }) {
            'authorization': 'Bearer ' + user.tokenUser,
            'Accept' : 'application/json',
            'Content-Type': 'application/json'  
-       }; 
+        }; 
 
        try {
            const responsePodcast =  await api.delete('podcasts/' +id+'/', { headers} );
@@ -41,22 +41,7 @@ export default function ListPodcast({ navigation }) {
            console.log(error);
            Alert.alert('Error');
        }
-       
-        const headers = {
-            'authorization': 'Bearer ' + user.tokenUser,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        };
-
-        try {
-            const responsePodcast = await api.delete('podcasts/' + id + '/', { headers });
-            navigationToListPodcast();
-            setModalVisible(!modalVisible)
-        } catch (error) {
-            console.log(error);
-            Alert.alert('Error');
-        }
->>>>>>> dd78cb4e66f008c2e7e86a880e1ff9b6bbf97b75
+             
     }
 
     //Função para naveção para lista de podcast
@@ -97,18 +82,13 @@ export default function ListPodcast({ navigation }) {
             Alert.alert('Error');
         }
     }
-<<<<<<< HEAD
     
     useEffect( ()=>{
         handleListPodcast();
         navigation.addListener('focus', ()=>setLoad(!load));
     }, [load, navigation]);
-=======
 
-    useEffect(() => {
-        handleListPodcast();
-    }, []);
->>>>>>> dd78cb4e66f008c2e7e86a880e1ff9b6bbf97b75
+    
 
     return (
         <View style={style.container}>

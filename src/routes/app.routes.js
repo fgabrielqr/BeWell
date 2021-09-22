@@ -9,10 +9,8 @@ import HomeRoutes from '../routes/home.routes';
 import Videos from '../pages/Videos';
 import Ansiedade from '../pages/Ansiedade';
 import Autocuidado from '../pages/Autocuidado';
-import MenuPodcast from '../pages/MenuPodcast';
 import UpdatePodcast from '../pages/UpdatePodcast';
 import UpdateUser from '../pages/UpdateUser';
-import MenuVideos from '../pages/MenuVideos';
 import UpdateVideos from '../pages/UpdateVideos';
 import { useAuth } from '../contexts/Auth';
 import { styles } from '../styles/home';
@@ -26,25 +24,6 @@ export function AppRoutes(){
     return(
         <AppStack.Navigator >
             <AppStack.Screen name="Home" component={HomeRoutes} options={{ headerShown: false}}/>
-            <AppStack.Screen name="MenuPodcast"  component={MenuPodcast} options={{ title: 'Menu Podcast',  
-                headerRight: () => (
-                    <TouchableOpacity onPress={logout} style={styles.btn_logout}>
-                        <Text>
-                            Sair
-                        </Text>
-                    </TouchableOpacity>
-                ) 
-            }}/>
-            <AppStack.Screen name="MenuVideos"  component={MenuVideos} options={{ title: 'Menu Videos',
-                headerRight: () => (
-                    <TouchableOpacity onPress={logout} style={styles.btn_logout}>
-                        <Text>
-                            Sair
-                        </Text>
-                    </TouchableOpacity>
-                )  
-            }}/>
-
             <AppStack.Screen name="CreateVideos"  component={CreateVideos} options={{ title: 'Cadastro de Videos', 
                 headerRight: () => (
                     <TouchableOpacity onPress={logout} style={styles.btn_logout}>

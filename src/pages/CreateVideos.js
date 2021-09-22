@@ -18,7 +18,6 @@ const schema = yup.object().shape({
 
 });
 
-export default function CreateVideos({ navigation }) {
 
 export default function CreateVideos({navigation }) {
 

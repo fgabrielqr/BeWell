@@ -1,5 +1,6 @@
-import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { Text, View, TouchableOpacity , StyleSheet} from 'react-native';
+import { ItemUser } from '../components/ItemUser';
 import { useAuth } from '../contexts/Auth';
 import { styles } from '../styles/cadastro';
 
@@ -15,18 +16,16 @@ export default function Conta({ navigation }) {
             </View>
         )
     } 
-    const { user } = useAuth();
-
+    
     function navigationToUdateUser() {
         navigation.navigate('UpdateUser', user);
     }
 
     return (
-        <View>
-            <Text>
-                Conta
-            </Text>
-            <View>
+        <View style={style.container}>
+            <ItemUser data={user} />
+
+             <View>
                 <TouchableOpacity style={styles.btn_login} onPress={navigationToUdateUser}>
                     <Text style={styles.textBtn}>
                         Editar Perfil
@@ -37,3 +36,16 @@ export default function Conta({ navigation }) {
         </View>
     )
 };
+
+const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+
+    },
+    info:{
+        fontSize:20, 
+        padding:20,
+    },
+})

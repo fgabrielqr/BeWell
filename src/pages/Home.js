@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/home';
 import { useAuth } from '../contexts/Auth';
@@ -16,7 +16,6 @@ export default function Home({ navigation }) {
             </View>
         )
     } 
-    const { user, logout, userLoading } = useAuth();
 
     function navigationToAnsiedade() {
         navigation.navigate('Ansiedade');
