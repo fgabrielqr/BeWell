@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
         width: "100%",
         paddingRight:15,
         paddingLeft:10
-
     },
     inputs: {
         height: 55,

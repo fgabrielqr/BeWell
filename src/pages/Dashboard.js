@@ -14,7 +14,6 @@ export default function Dashboard({ navigation }) {
         )
     } 
 
-
     //navegation para pagina de videos 
     function navigationToVideos() {
         navigation.navigate('Videos');
@@ -40,7 +39,6 @@ export default function Dashboard({ navigation }) {
         navigation.navigate('Cadastro');
     }
 
-
     //navegation para pagina de Login 
     function navigationToLogin() {
         navigation.navigate('Login');
@@ -56,7 +54,6 @@ export default function Dashboard({ navigation }) {
                     style={styles.logo}
                 />
             </View>
-
             <View style={styles.viewFuncionalidades}>
                 <View>
                     <TouchableOpacity style={styles.btn} onPress={navigationToAnsiedade}>
@@ -66,7 +63,6 @@ export default function Dashboard({ navigation }) {
                         />
                     </TouchableOpacity >
                     <Text style={styles.title1}>O que é asiedade?</Text>
-
                     <TouchableOpacity style={styles.btn} onPress={navigationToPodcast}>
                         <Image
                             source={require('../assets/imagens/img3.png')}
@@ -75,7 +71,6 @@ export default function Dashboard({ navigation }) {
                     </TouchableOpacity>
                     <Text style={styles.title1}>Podcast</Text>
                 </View>
-
                 <View>
                     <TouchableOpacity style={styles.btn} onPress={navigationToVideos}>
                         <Image
@@ -84,8 +79,6 @@ export default function Dashboard({ navigation }) {
                         />
                     </TouchableOpacity>
                     <Text style={styles.title1}>Vídeos</Text>
-
-
                     <TouchableOpacity style={styles.btn} onPress={navigationToAutocuidado}>
                         <Image
                             source={require('../assets/imagens/img1.png')}
@@ -95,14 +88,12 @@ export default function Dashboard({ navigation }) {
                     <Text style={styles.title1}>Autocuidado</Text>
                 </View>
             </View>
-
             <View style={styles.viewButtons}>
                 <View>
                     <TouchableOpacity style={styles.btn_login} onPress={navigationToLogin}>
                         <Text style={styles.login}>Login</Text>
                     </TouchableOpacity>
                 </View>
-
                 <View>
                     <TouchableOpacity style={styles.btn_login} onPress={navigationToCadastro}>
                         <Text style={styles.login}>Cadastro</Text>
