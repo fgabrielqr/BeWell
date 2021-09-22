@@ -46,7 +46,6 @@ export default function CadastroPodcast({ navigation }) {
             'Content-Type': 'application/json'
         };
 
-<<<<<<< HEAD
       try {
         const responsePodcast =  await api.post('podcasts/', body, { headers} );
         Keyboard.dismiss(); 
@@ -55,7 +54,6 @@ export default function CadastroPodcast({ navigation }) {
         console.log(error);
         Alert.alert('Error');
       }
-=======
         try {
             const responsePodcast = await api.post('podcasts/', body, { headers, body: body });
             Keyboard.dismiss();
@@ -64,7 +62,6 @@ export default function CadastroPodcast({ navigation }) {
             console.log(error);
             Alert.alert('Error');
         }
->>>>>>> dd78cb4e66f008c2e7e86a880e1ff9b6bbf97b75
     }
 
     return (

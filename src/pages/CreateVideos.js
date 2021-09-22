@@ -20,7 +20,6 @@ const schema = yup.object().shape({
 
 export default function CreateVideos({ navigation }) {
 
-<<<<<<< HEAD
 export default function CreateVideos({navigation }) {
 
     const {user, userLoading} = useAuth();
@@ -34,9 +33,6 @@ export default function CreateVideos({navigation }) {
         )
     } 
 
-=======
-    const { user, userLoading } = useAuth();
->>>>>>> dd78cb4e66f008c2e7e86a880e1ff9b6bbf97b75
 
     // constante retornadas pelo react-hook-form
     const { control, handleSubmit, formState: { errors } } = useForm({

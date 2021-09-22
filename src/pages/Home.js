@@ -6,7 +6,6 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function Home({ navigation }) {
 
-<<<<<<< HEAD
     const {user, logout, userLoading} = useAuth();
     const[isLoading,setIsLoading] = useState(false);
 
@@ -17,9 +16,7 @@ export default function Home({ navigation }) {
             </View>
         )
     } 
-=======
     const { user, logout, userLoading } = useAuth();
->>>>>>> dd78cb4e66f008c2e7e86a880e1ff9b6bbf97b75
 
     function navigationToAnsiedade() {
         navigation.navigate('Ansiedade');

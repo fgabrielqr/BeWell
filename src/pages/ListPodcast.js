@@ -27,7 +27,6 @@ export default function ListPodcast({ navigation }) {
 
     //Função para deletar podcast
     async function handleDeletePodcast(id) {
-<<<<<<< HEAD
         const headers = { 
            'authorization': 'Bearer ' + user.tokenUser,
            'Accept' : 'application/json',
@@ -42,7 +41,7 @@ export default function ListPodcast({ navigation }) {
            console.log(error);
            Alert.alert('Error');
        }
-=======
+       
         const headers = {
             'authorization': 'Bearer ' + user.tokenUser,
             'Accept': 'application/json',
