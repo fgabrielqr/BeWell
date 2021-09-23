@@ -8,6 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 export default function UpdateUser({route, navigation }) {
     const [user, setUser] = useState(route.params ? route.params : {})
     const[isLoading,setIsLoading] = useState(false);
+    
 
     if(isLoading){
         return(
@@ -16,6 +17,11 @@ export default function UpdateUser({route, navigation }) {
             </View>
         )
     } 
+
+    //navegation para ir para tela de conta do user
+    function navigationToUserConta() {
+        navigation.navigate('Conta');
+    }
 
 
     //function fazer requisição a api 
@@ -32,18 +38,16 @@ export default function UpdateUser({route, navigation }) {
         body.append('email', user.email);
         body.append('is_staff', true);
         
-        console.log(body)
-
         const headers = { 
             'authorization': 'Bearer ' + user.tokenUser,
             'Accept' : 'application/json',
             'Content-Type': 'application/json'  
         };
-        url = 'user/' +user.id+'/'
-        console.log(url)
+
         try {
             const responseUser =  await api.put('user/' +user.id+'/', body, { headers, body: body } );
-            console.log(responseUser)
+            //console.log(responseUser);
+            navigationToUserConta();
         }catch(error){
             console.log(error);
             Alert.alert('Error');
