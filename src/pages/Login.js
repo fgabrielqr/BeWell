@@ -39,7 +39,7 @@ export default function Login({ navigation }) {
         } catch (error) {
             setIsLoading(false);
             console.log(error);
-            Alert.alert("Erro");
+            Alert.alert("Verifique seus dados!");
         }
     }
 

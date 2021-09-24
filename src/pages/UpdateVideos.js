@@ -98,7 +98,7 @@ export default function UpdateVideos({route, navigation }) {
            </View>
 
            <View>
-                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit (UpdateVideos)}>
+                <TouchableOpacity style={styles.btn_entrar} onPress={handleSubmit (UpdateVideos)}>
                     <Text style={styles.textBtn}>
                         Editar
                     </Text>

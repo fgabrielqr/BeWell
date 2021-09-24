@@ -20,12 +20,22 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     btn_login: {
-        bottom: 50,
         height: '28%',
         width: '90%',
         backgroundColor: '#bde4dd',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
+    },
+    btn_entrar: {
+        left: 17,
+        top: 175,
+        width: '90%',
+        height: 50,
+        padding: 0,
+        borderRadius: 5,
+        backgroundColor: '#bde4dd',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });

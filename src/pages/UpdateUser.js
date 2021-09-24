@@ -4,10 +4,14 @@ import { styles } from '../styles/cadastro';
 import { Input } from '../components/Input';
 import api from '../service/api';
 import { StatusBar } from 'expo-status-bar';
+import { useAuth } from '../contexts/Auth';
+
 
 export default function UpdateUser({route, navigation }) {
-    const [user, setUser] = useState(route.params ? route.params : {})
+    const [usuario, setUsuario] = useState(route.params ? route.params : {})
     const[isLoading,setIsLoading] = useState(false);
+    const {user, setUser} = useAuth();
+
     
 
     if(isLoading){
@@ -27,26 +31,41 @@ export default function UpdateUser({route, navigation }) {
     //function fazer requisição a api 
     async function UpdateUser(){
         var body = new FormData();
-        body.append('id', user.id);
-        body.append('password', user.password);
+        body.append('id', usuario.id);
+        body.append('password', usuario.password);
         body.append('is_superuser', false);
-        body.append('username', user.email);
-        body.append('first_name', user.first_name);
-        body.append('last_name', user.last_name);
+        body.append('username', usuario.email);
+        body.append('first_name', usuario.first_name);
+        body.append('last_name', usuario.last_name);
         body.append('is_active', true);
-        body.append('crp', user.crp);
-        body.append('email', user.email);
+        body.append('crp', usuario.crp);
+        body.append('email', usuario.email);
         body.append('is_staff', true);
         
         const headers = { 
-            'authorization': 'Bearer ' + user.tokenUser,
+            'authorization': 'Bearer ' + usuario.tokenUser,
             'Accept' : 'application/json',
             'Content-Type': 'application/json'  
         };
 
         try {
-            const responseUser =  await api.put('user/' +user.id+'/', body, { headers, body: body } );
-            //console.log(responseUser);
+            const responseUser =  await api.put('user/' +usuario.id+'/', body, { headers, body: body } );
+            
+            const {id, first_name, last_name, crp, email, password, is_superuser,is_active,is_staff } = responseUser.data; 
+            const userLogged = {
+                id: id,
+                email:email,
+                first_name:first_name,
+                last_name: last_name,
+                crp: crp, 
+                tokenUser:usuario.tokenUser, 
+                password:password, 
+                is_superuser:is_superuser, 
+                is_active:is_active,
+                is_staff:is_staff
+
+            }
+            setUser(userLogged);
             navigationToUserConta();
         }catch(error){
             console.log(error);
@@ -62,13 +81,13 @@ export default function UpdateUser({route, navigation }) {
             backgroundColor="#bde4dd"/>
             <View style={styles.form}>
                 <Text style={styles.texto}>Nome</Text>
-                <Input label='Nome' onChangeText = {first_name => setUser({...user, first_name})}   value={user.first_name}/>
+                <Input label='Nome' onChangeText = {first_name => setUsuario({...usuario, first_name})}   value={user.first_name}/>
                 <Text style={styles.texto}>Sobrenome</Text>
-                <Input label='Sobrenome' onChangeText = {last_name => setUser({...user, last_name})}   value={user.last_name}/>
+                <Input label='Sobrenome' onChangeText = {last_name => setUsuario({...usuario, last_name})}   value={user.last_name}/>
                 <Text style={styles.texto}>CRP</Text>
-                <Input label='CRP' onChangeText = {crp => setUser({...user, crp})}   value={user.crp}/>
+                <Input label='CRP' onChangeText = {crp => setUsuario({...usuario, crp})}   value={user.crp}/>
                 <Text style={styles.texto}>CRP</Text>
-                <Input label='email' onChangeText = {email => setUser({...user, email})}   value={user.email}/>
+                <Input label='email' onChangeText = {email => setUsuario({...usuario, email})}   value={user.email}/>
             </View>
 
             <View>

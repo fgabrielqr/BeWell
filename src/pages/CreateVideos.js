@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Keyboard, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { styles } from '../styles/cadastro';
 import api from '../service/api';
