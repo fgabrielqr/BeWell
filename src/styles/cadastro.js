@@ -3,24 +3,26 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingRight:15,
+        paddingLeft:10,
     },
     scroll:{
         flex: 1,
     },
     texto: {
         top: 10,
-        marginLeft: 25,
+        marginLeft: 15,
     },
     textBtn: {
         fontWeight: 'bold',
     },
     btn:{
-        top: 50,
+        flex: 0.2,
         alignItems: 'center',
         justifyContent: 'center',
     },
     btn_login: {
-        height: '28%',
+        height: 50,
         width: '90%',
         backgroundColor: '#bde4dd',
         alignItems: 'center',
@@ -38,6 +40,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+<<<<<<< HEAD
 
     containerInput: {
         width: "100%",
@@ -53,5 +56,9 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         paddingLeft: 20,
 
+=======
+    form: {
+        
+>>>>>>> 0c2e2652322851c9842711f02f38302cf215da84
     },
 });

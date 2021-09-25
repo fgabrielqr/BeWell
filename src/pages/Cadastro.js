@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Alert, Keyboard, ScrollView } from 'react-native';
 import { styles } from '../styles/cadastro';
 import api from '../service/api';
@@ -21,15 +21,15 @@ const schema = yup.object().shape({
 });
 
 export default function Cadastro({ navigation }) {
-    const[isLoading,setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-    if(isLoading){
-        return(
-            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="#0000ff"/>
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
             </View>
         )
-    } 
+    }
 
     // constante retornadas pelo react-hook-form
     const { control, handleSubmit, formState: { errors } } = useForm({
@@ -65,28 +65,29 @@ export default function Cadastro({ navigation }) {
                 <StatusBar
                     animated={true}
                     backgroundColor="#bde4dd" />
-
-                <Text style={styles.texto}>Nome</Text>
-                <InputForm name='first_name' control={control} placeholder="Ex: Jubileu"
-                    error={errors.first_name && errors.first_name.message}
-                />
-                <Text style={styles.texto}>Sobrenome</Text>
-                <InputForm name='last_name' control={control} placeholder="Ex: Pinto"
-                    error={errors.last_name && errors.last_name.message}
-                />
-                <Text style={styles.texto}>CRP</Text>
-                <InputForm name='crp' control={control} placeholder="Ex: 05217"
-                    error={errors.crp && errors.crp.message}
-                />
-                <Text style={styles.texto}>E-mail</Text>
-                <InputForm name='email' control={control} placeholder="Ex: jubileu@gmail.com"
-                    error={errors.email && errors.email.message}
-                />
-                <Text style={styles.texto}>Senha</Text>
-                <InputForm name='password' control={control} placeholder="Ex: jubileu123"
-                    error={errors.password && errors.password.message}
-                    secureTextEntry={true}
-                />
+                <View style={styles.form}>
+                    <Text style={styles.texto}>Nome</Text>
+                    <InputForm name='first_name' control={control} placeholder="Ex: Jubileu"
+                        error={errors.first_name && errors.first_name.message}
+                    />
+                    <Text style={styles.texto}>Sobrenome</Text>
+                    <InputForm name='last_name' control={control} placeholder="Ex: Pinto"
+                        error={errors.last_name && errors.last_name.message}
+                    />
+                    <Text style={styles.texto}>CRP</Text>
+                    <InputForm name='crp' control={control} placeholder="Ex: 05217"
+                        error={errors.crp && errors.crp.message}
+                    />
+                    <Text style={styles.texto}>E-mail</Text>
+                    <InputForm name='email' control={control} placeholder="Ex: jubileu@gmail.com"
+                        error={errors.email && errors.email.message}
+                    />
+                    <Text style={styles.texto}>Senha</Text>
+                    <InputForm name='password' control={control} placeholder="Ex: jubileu123"
+                        error={errors.password && errors.password.message}
+                        secureTextEntry={true}
+                    />
+                </View>
             </ScrollView>
             <View style={styles.btn}>
                 <TouchableOpacity style={styles.btn_login} onPress={handleSubmit(handleCreateUser)}>

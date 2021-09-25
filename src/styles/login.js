@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    containerInput: {
-        width: "100%",
+    container: {
+        flex: 1,
         paddingRight:15,
-        paddingLeft:10
+        paddingLeft:10,
     },
     inputs: {
         height: 55,
@@ -13,29 +13,32 @@ export const styles = StyleSheet.create({
         fontSize: 17,
         marginTop:15,
         backgroundColor: '#FFFFFF',
-        paddingLeft: 20,
+        paddingLeft: 15,
 
     },
     btn_login: {
-        left: 17,
-        top: 175,
-        width: '90%',
         height: 50,
-        padding: 0,
-        borderRadius: 5,
+        width: '90%',
         backgroundColor: '#bde4dd',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+    },
+    btn:{
+        flex: 1,
+        top: 35,
         alignItems: 'center',
         justifyContent: 'center',
     },
     form: {
-        top: 100,
+        top: '25%',
         height: 170,
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignContent: 'center'
     },
     texto: {
-        top: 10,
-        marginLeft: 25
+        top: 5,
+        marginLeft: 15,
     },
     textBtn: {
         fontWeight: 'bold'
@@ -44,7 +47,8 @@ export const styles = StyleSheet.create({
         borderColor: 'red',
     },
     error:{
-        fontSize: 15,
+        left: 10,
+        fontSize: 14,
         color: 'red',
     },
 });

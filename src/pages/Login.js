@@ -52,7 +52,7 @@ export default function Login({ navigation }) {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <StatusBar
                 animated={true}
                 backgroundColor="#bde4dd" />
@@ -69,7 +69,7 @@ export default function Login({ navigation }) {
 
             </View>
 
-            <View>
+            <View style={styles.btn}>
                 <TouchableOpacity style={styles.btn_login} onPress={handleSubmit(handleLogin)}>
                     <Text style={styles.textBtn}>
                         Entrar
