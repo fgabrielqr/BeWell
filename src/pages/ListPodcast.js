@@ -56,7 +56,6 @@ export default function ListPodcast({ navigation }) {
 
     //Função para o model
     async function handleModalPodcast(id) {
-        console.log(id);
         setModalVisible(true);
         setPodcastDelete(id);
     }

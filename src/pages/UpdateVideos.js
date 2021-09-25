@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef} from 'react';
 import { useAuth } from '../contexts/Auth';
 import {Formik} from 'formik';
-import {Text, TextInput, View, TouchableOpacity} from 'react-native';
+import {Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import * as Yup from 'yup';
 import { styles } from '../styles/cadastro';
 import api from '../service/api';
@@ -94,7 +94,7 @@ export default function UpdateVideos({route, navigation }) {
                             onChangeText={handleChange('nome')}
                             onBlur={() => setFieldTouched('nome', true)}
                         />
-                        {errors.nome && touched.nome && <Text>{errors.nome}</Text>}
+                        {errors.nome && touched.nome && <Text style={styles.inputError}>{errors.nome}</Text>}
                     </View>
 
                     <Text style={styles.texto}>URL</Text>
@@ -106,7 +106,7 @@ export default function UpdateVideos({route, navigation }) {
                             onChangeText={handleChange('url')}
                             onBlur={() => setFieldTouched('url', true)}
                         />
-                        {errors.url && touched.url && <Text>{errors.url}</Text>}
+                        {errors.url && touched.url && <Text style={styles.inputError}>{errors.url}</Text>}
                     </View>
 
                     <Text style={styles.texto}>Descrição</Text>
@@ -118,7 +118,7 @@ export default function UpdateVideos({route, navigation }) {
                             onChangeText={handleChange('descricao')}
                             onBlur={() => setFieldTouched('descricao', true)}
                         />
-                        {errors.descricao && touched.descricao && <Text>{errors.descricao}</Text>}
+                        {errors.descricao && touched.descricao && <Text style={styles.inputError}>{errors.descricao}</Text>}
                     </View>
 
                 </View>

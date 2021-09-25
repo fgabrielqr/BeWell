@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-<<<<<<< HEAD
 
     containerInput: {
         width: "100%",
@@ -54,11 +53,14 @@ export const styles = StyleSheet.create({
         fontSize: 17,
         marginTop:15,
         backgroundColor: '#FFFFFF',
-        paddingLeft: 20,
-
-=======
-    form: {
-        
->>>>>>> 0c2e2652322851c9842711f02f38302cf215da84
+        paddingLeft: 20,     
+    },
+    inputError:{
+        borderColor: 'red',
+    },
+    error:{
+        left: 10,
+        fontSize: 14,
+        color: 'red',
     },
 });
