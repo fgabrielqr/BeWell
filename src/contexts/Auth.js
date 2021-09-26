@@ -52,8 +52,10 @@ function AuthProvider({children}){
             }
             setUser(userLogged);
             await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
+            setUserLoading(false);
         }catch(error){
             console.log(error);
+            setUserLoading(false);
             console.log('Aqui');
         }
     }
@@ -78,43 +80,43 @@ function AuthProvider({children}){
                 success = false;
                 console.log('errorToken');
             }
-        }
+        
+            if (!success){
+                try {
+                    var params = new URLSearchParams();
+                    params.append('refresh', user.refresh);
+                    
+                    const {data} = await api.post('api/token/refresh/', params);
 
-        if (!success){
-            try {
-                var params = new URLSearchParams();
-                params.append('refresh', user.refresh);
-                
-                const {data} = await api.post('api/token/refresh/', params);
+                    console.log(data);
 
-                console.log(data);
+                    const userLogged = {
+                        id: user.id,
+                        email:user.email,
+                        first_name:user.first_name,
+                        last_name: user.last_name,
+                        crp: user.crp, 
+                        tokenUser:data.access,
+                        refresh : user.refresh, 
+                        password:user.password, 
+                        is_superuser:user.is_superuser, 
+                        is_active:user.is_active,
+                        is_staff:user.is_staff
+        
+                    }
+                    setUser(userLogged);
 
-                const userLogged = {
-                    id: user.id,
-                    email:user.email,
-                    first_name:user.first_name,
-                    last_name: user.last_name,
-                    crp: user.crp, 
-                    tokenUser:data.access,
-                    refresh : user.refresh, 
-                    password:user.password, 
-                    is_superuser:user.is_superuser, 
-                    is_active:user.is_active,
-                    is_staff:user.is_staff
-    
+                    await AsyncStorage.removeItem(keyAsyncStorage);
+                    await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
+
+                } catch {
+                    console.log('errorRefresh')
+                    logout();
                 }
-                setUser(userLogged);
-
-                await AsyncStorage.removeItem(keyAsyncStorage);
-                await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
-
-            } catch {
-                console.log('errorRefresh')
-                logout();
             }
         }
     }
-    
+
     //Função para fazer o logout e remover o user do 
     async function logout(){
         setUser({});
@@ -123,17 +125,18 @@ function AuthProvider({children}){
 
     //Função do load para recarregar os dados 
     async function loadUser() {
+        setUserLoading(true);
         const userStoraged = await AsyncStorage.getItem(keyAsyncStorage);
         
         if(userStoraged){
           const userLogged = JSON.parse(userStoraged);
           setUser(userLogged);
         }
+        setUserLoading(false);
     }
 
     useEffect(() => {   
         loadUser();
-        setUserLoading(false);
     },[]);
 
 
