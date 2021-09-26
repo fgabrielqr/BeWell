@@ -4,6 +4,12 @@ import { AppRoutes } from './app.routes'
 import { useAuth } from '../contexts/Auth';
 export function MainRoutes(){
 
-    const {user}= useAuth()
-    return user.first_name ? <AppRoutes/>: <LoginRoutes/>;
+    const {user,  refreshToken}= useAuth();
+    
+    refreshToken();
+    if(user.first_name) {
+        return <AppRoutes/>
+    }else {
+        return <LoginRoutes/>
+    }
 }

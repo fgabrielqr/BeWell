@@ -13,6 +13,7 @@ function AuthProvider({children}){
 
     const keyAsyncStorage = "@bewell:user";
 
+    //função para realiza login no na api 
     async function signWithBewell(username, password){
 
         var params = new URLSearchParams();
@@ -23,7 +24,8 @@ function AuthProvider({children}){
             
             const responseToken = await api.post('api/token/', params);
             const response = responseToken.data;
-            const token = response.access;  
+            const token = response.access;
+            const refresh = response.refresh;  
             const responseUser =  await  api.get('/meus-dados/', { 
                 headers:{
                     'authorization': 'Bearer ' + token,
@@ -40,7 +42,8 @@ function AuthProvider({children}){
                 first_name:first_name,
                 last_name: last_name,
                 crp: crp, 
-                tokenUser:token, 
+                tokenUser:token,
+                refresh : refresh, 
                 password:password, 
                 is_superuser:is_superuser, 
                 is_active:is_active,
@@ -51,10 +54,67 @@ function AuthProvider({children}){
             await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
         }catch(error){
             console.log(error);
-            Alert.alert('Error');
+            console.log('Aqui');
         }
     }
 
+
+    //Função para realizar o refresh do token
+    async function refreshToken() {
+
+        if (JSON.stringify(user) != JSON.stringify({})) {
+            var success = true;
+
+            try {
+                const responseUser =  await  api.get('/meus-dados/', { 
+                    headers:{
+                        'authorization': 'Bearer ' + user.tokenUser,
+                        'Accept' : 'application/json',
+                        'Content-Type': 'application/json'    
+                    }
+                } );
+                
+            } catch {
+                success = false;
+                console.log('errorToken');
+            }
+        }
+
+        if (!success){
+            try {
+                var params = new URLSearchParams();
+                params.append('refresh', user.refresh);
+                
+                const {data} = await api.post('api/token/refresh/', params);
+
+                console.log(data);
+
+                const userLogged = {
+                    id: user.id,
+                    email:user.email,
+                    first_name:user.first_name,
+                    last_name: user.last_name,
+                    crp: user.crp, 
+                    tokenUser:data.access,
+                    refresh : user.refresh, 
+                    password:user.password, 
+                    is_superuser:user.is_superuser, 
+                    is_active:user.is_active,
+                    is_staff:user.is_staff
+    
+                }
+                setUser(userLogged);
+
+                await AsyncStorage.removeItem(keyAsyncStorage);
+                await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
+
+            } catch {
+                console.log('errorRefresh')
+                logout();
+            }
+        }
+    }
+    
     //Função para fazer o logout e remover o user do 
     async function logout(){
         setUser({});
@@ -71,12 +131,6 @@ function AuthProvider({children}){
         }
     }
 
-    async function logout(){
-        setUser({});
-        await AsyncStorage.removeItem(keyAsyncStorage);
-    }
-
-
     useEffect(() => {   
         loadUser();
         setUserLoading(false);
@@ -84,7 +138,7 @@ function AuthProvider({children}){
 
 
     return(
-        <AuthContext.Provider value={{user, logout, signWithBewell, userLoading, setUser}}>
+        <AuthContext.Provider value={{user, logout, signWithBewell, userLoading, setUser, refreshToken}}>
             { children }
         </AuthContext.Provider>
         
