@@ -11,7 +11,7 @@ function AuthProvider({children}){
     const [userLoading, setUserLoading] = useState(true);
     
 
-    const keyAsyncStorage = "@bewell:user";
+    const keyAsyncStorage = "@bewell1:user";
 
     //função para realiza login no na api 
     async function signWithBewell(username, password){
@@ -60,62 +60,59 @@ function AuthProvider({children}){
         }
     }
 
+    async function updateToken(usuario){
+        var params = new URLSearchParams();
+        params.append('refresh', usuario.refresh);
+        
+        const {data} = await api.post('api/token/refresh/', params);
+
+        const userLogged = {
+            id: usuario.id,
+            email:usuario.email,
+            first_name:usuario.first_name,
+            last_name: usuario.last_name,
+            crp: usuario.crp, 
+            tokenUser:data.access,
+            refresh : usuario.refresh, 
+            password:usuario.password, 
+            is_superuser:usuario.is_superuser, 
+            is_active:usuario.is_active,
+            is_staff:usuario.is_staff
+
+        }
+        setUser(userLogged);
+
+        await AsyncStorage.removeItem(keyAsyncStorage);
+        await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
+    }
 
     //Função para realizar o refresh do token
     async function refreshToken() {
-
-        if (JSON.stringify(user) != JSON.stringify({})) {
-            var success = true;
-
-            try {
-                const responseUser =  await  api.get('/meus-dados/', { 
-                    headers:{
-                        'authorization': 'Bearer ' + user.tokenUser,
-                        'Accept' : 'application/json',
-                        'Content-Type': 'application/json'    
-                    }
-                } );
-                
-            } catch {
-                success = false;
-                console.log('errorToken');
-            }
         
-            if (!success){
-                try {
-                    var params = new URLSearchParams();
-                    params.append('refresh', user.refresh);
-                    
-                    const {data} = await api.post('api/token/refresh/', params);
-
-                    console.log(data);
-
-                    const userLogged = {
-                        id: user.id,
-                        email:user.email,
-                        first_name:user.first_name,
-                        last_name: user.last_name,
-                        crp: user.crp, 
-                        tokenUser:data.access,
-                        refresh : user.refresh, 
-                        password:user.password, 
-                        is_superuser:user.is_superuser, 
-                        is_active:user.is_active,
-                        is_staff:user.is_staff
-        
-                    }
-                    setUser(userLogged);
-
-                    await AsyncStorage.removeItem(keyAsyncStorage);
-                    await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
-
-                } catch {
-                    console.log('errorRefresh')
-                    logout();
-                }
-            }
-        }
+        const userStoraged = await AsyncStorage.getItem(keyAsyncStorage);
+          
+          if(userStoraged){
+            const userLogged = JSON.parse(userStoraged);
+           
+            api.interceptors.response.use(response => {
+                return response
+              }, err => {
+                return new Promise((resolve, reject) => {
+                  const originalReq = err.config
+                  if (err.response.status == 401){
+                    originalReq._retry = true
+                    console.log("ok");
+                    updateToken(userLogged);
+                  }else{
+                    reject(err)
+                  }
+                })
+            })
+        }   
     }
+        
+    
+
 
     //Função para fazer o logout e remover o user do 
     async function logout(){

@@ -78,7 +78,7 @@ export default function ListPodcast({ navigation }) {
 
         } catch (error) {
             console.log(error);
-            Alert.alert('Error');
+           // Alert.alert('Error');
         }
     }
     
