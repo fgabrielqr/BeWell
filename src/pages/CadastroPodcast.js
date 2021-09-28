@@ -1,6 +1,6 @@
 import React from 'react';
 import { Keyboard, Text, View, TouchableOpacity, Alert } from 'react-native';
-import { styles } from '../styles/cadastro';
+import { CadastroPodcasts } from '../styles/cadastro_podcast';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { InputForm } from '../components/InputForm';
@@ -65,24 +65,24 @@ export default function CadastroPodcast({ navigation }) {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.form}>
-                <Text style={styles.texto}>Nome</Text>
+        <View style={CadastroPodcasts.container}>
+            <View style={CadastroPodcasts.form}>
+                <Text style={CadastroPodcasts.texto}>Nome</Text>
                 <InputForm name='nome' control={control} placeholder="Ex: Jubileu"
                     error={errors.nome && errors.nome.message}
                 />
-                <Text style={styles.texto}>URL</Text>
+                <Text style={CadastroPodcasts.texto}>URL</Text>
                 <InputForm name='url' control={control} placeholder="Ex: https://youtu.be/bwLaIImg5_8"
                     error={errors.url && errors.url.message}
                 />
-                <Text style={styles.texto}>Descricão</Text>
+                <Text style={CadastroPodcasts.texto}>Descricão</Text>
                 <InputForm name='descricao' control={control} placeholder="Ex: Ansiedade não é brincadeira"
                     error={errors.descricao && errors.descricao.message}
                 />
             </View>
-            <View style={styles.btn}>
-                <TouchableOpacity style={styles.btn_login} onPress={handleSubmit(handleCreatePodcast)}>
-                    <Text style={styles.textBtn}>
+            <View style={CadastroPodcasts.btn}>
+                <TouchableOpacity style={CadastroPodcasts.btn_login} onPress={handleSubmit(handleCreatePodcast)}>
+                    <Text style={CadastroPodcasts.textBtn}>
                         Cadastrar
                     </Text>
                 </TouchableOpacity>
