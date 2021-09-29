@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext} from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert, Keyboard } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Alert, Keyboard } from 'react-native';
 import api from '../service/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
