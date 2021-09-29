@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Keyboard, Text, View, TouchableOpacity, Alert } from 'react-native';
-import { CadastroPodcasts } from '../styles/cadastro_podcast';
+import { UpdateStyle } from '../styles/update_style';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { InputForm } from '../components/InputForm';
@@ -68,24 +68,24 @@ export default function CreateVideos({navigation }) {
     }
 
     return (
-        <View style={CadastroPodcasts.container}>
-            <View style={CadastroPodcasts.form}>
-                <Text style={CadastroPodcasts.texto}>Nome</Text>
+        <View style={UpdateStyle.container}>
+            <View style={UpdateStyle.form}>
+                <Text style={UpdateStyle.texto}>Nome</Text>
                 <InputForm name='nome' control={control}
                     error={errors.nome && errors.nome.message} placeholder="Ex: Jubileu"
                 />
-                <Text style={CadastroPodcasts.texto}>URL</Text>
+                <Text style={UpdateStyle.texto}>URL</Text>
                 <InputForm name='url' control={control} placeholder="Ex: https://youtu.be/bwLaIImg5_8"
                     error={errors.url && errors.url.message}
                 />
-                <Text style={CadastroPodcasts.texto}>Descricão</Text>
+                <Text style={UpdateStyle.texto}>Descricão</Text>
                 <InputForm name='descricao' control={control} placeholder="Ex: Ansiedade não é brincadeira"
                     error={errors.descricao && errors.descricao.message}
                 />
             </View>
-            <View style={CadastroPodcasts.btn}>
-                <TouchableOpacity style={CadastroPodcasts.btn_login} onPress={handleSubmit(handleCreateVideos)}>
-                    <Text style={CadastroPodcasts.textBtn}>
+            <View style={UpdateStyle.btn}>
+                <TouchableOpacity style={UpdateStyle.btn_login} onPress={handleSubmit(handleCreateVideos)}>
+                    <Text style={UpdateStyle.textBtn}>
                         Cadastrar
                     </Text>
                 </TouchableOpacity>

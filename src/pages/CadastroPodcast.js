@@ -1,6 +1,6 @@
 import React from 'react';
 import { Keyboard, Text, View, TouchableOpacity, Alert } from 'react-native';
-import { CadastroPodcasts } from '../styles/cadastro_podcast';
+import { UpdateStyle } from '../styles/update_style';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { InputForm } from '../components/InputForm';
@@ -46,14 +46,14 @@ export default function CadastroPodcast({ navigation }) {
             'Content-Type': 'application/json'
         };
 
-      try {
-        const responsePodcast =  await api.post('podcasts/', body, { headers} );
-        Keyboard.dismiss(); 
-        navigationToListPodcast();
-      }catch(error){
-        console.log(error);
-        Alert.alert('Error');
-      }
+        try {
+            const responsePodcast = await api.post('podcasts/', body, { headers });
+            Keyboard.dismiss();
+            navigationToListPodcast();
+        } catch (error) {
+            console.log(error);
+            Alert.alert('Error');
+        }
         try {
             const responsePodcast = await api.post('podcasts/', body, { headers, body: body });
             Keyboard.dismiss();
@@ -65,24 +65,24 @@ export default function CadastroPodcast({ navigation }) {
     }
 
     return (
-        <View style={CadastroPodcasts.container}>
-            <View style={CadastroPodcasts.form}>
-                <Text style={CadastroPodcasts.texto}>Nome</Text>
+        <View style={UpdateStyle.container}>
+            <View style={UpdateStyle.form}>
+                <Text style={UpdateStyle.texto}>Nome</Text>
                 <InputForm name='nome' control={control} placeholder="Ex: Jubileu"
                     error={errors.nome && errors.nome.message}
                 />
-                <Text style={CadastroPodcasts.texto}>URL</Text>
+                <Text style={UpdateStyle.texto}>URL</Text>
                 <InputForm name='url' control={control} placeholder="Ex: https://youtu.be/bwLaIImg5_8"
                     error={errors.url && errors.url.message}
                 />
-                <Text style={CadastroPodcasts.texto}>Descricão</Text>
+                <Text style={UpdateStyle.texto}>Descricão</Text>
                 <InputForm name='descricao' control={control} placeholder="Ex: Ansiedade não é brincadeira"
                     error={errors.descricao && errors.descricao.message}
                 />
             </View>
-            <View style={CadastroPodcasts.btn}>
-                <TouchableOpacity style={CadastroPodcasts.btn_login} onPress={handleSubmit(handleCreatePodcast)}>
-                    <Text style={CadastroPodcasts.textBtn}>
+            <View style={UpdateStyle.btn}>
+                <TouchableOpacity style={UpdateStyle.btn_login} onPress={handleSubmit(handleCreatePodcast)}>
+                    <Text style={UpdateStyle.textBtn}>
                         Cadastrar
                     </Text>
                 </TouchableOpacity>
