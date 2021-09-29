@@ -136,19 +136,16 @@ export default function Ansiedade() {
                 </Text>
 
                 <Text style={styles.titulo}>
-                    Referências
+                    Fonte: 
                 </Text>
                 <Text style={styles.texto}>
-                    A ansiedade é desagradável, e então encontramos formas de fazer com que nos sintamos melhor.
-                    As situações temidas ou difíceis PODEM SER EVITADAS. Podemos parar de fazer as coisas
-                    que nos preocupam. Quanto mais interrompemos ou evitamos as coisas, menos as fazemos e fica
-                    mais difícil enfrentar nossos medos e superar nossas preocupações.
+                    Materiais Didáticos e Folhas de Exercícios. Extraídos de Ansiedade, de Paul Stallard, publicado pela Artmed. 
+                </Text>
+                <Text style={styles.texto}>
+                    Link: https://document.onl/documents/fichas-paul-stallard-ansiedade.html
                 </Text>
             </ScrollView>
 
-            <View>
-
-            </View>
         </View>
     )
 };
