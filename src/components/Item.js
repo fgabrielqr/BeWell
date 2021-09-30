@@ -26,12 +26,12 @@ export function Item(props){
                 <TouchableOpacity style={styles.btn}  onPress={() => props.navigation.navigate('UpdatePodcast', props.data)}
 >
                     <Text style={styles.textBtn} >
-                        <Icon name="edit"  size={25} color={"#666666"}/>
+                        <Icon name="edit"  size={20} color={"#666666"}/>
                     </Text>
                 </TouchableOpacity>
             
                 <TouchableOpacity style={styles.btn}  onPress={props.apagar}>
-                    <Icon name="trash-alt"  size={28} color={"#666666"}/>
+                    <Icon name="trash-alt"  size={20} color={"#666666"}/>
                 </TouchableOpacity>
             </View>
         </View>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
         padding:5,        
     }, 
     video:{
-        
         height:241, 
         width:'100%'
     },

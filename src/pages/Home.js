@@ -38,15 +38,10 @@ export default function Home({ navigation }) {
                 animated={true}
                 backgroundColor="#bde4dd" />
             <View style={styles.viewLogo}>
-                <View></View>
                 <View style={styles.viewLogo1}>
                     <Text style={styles.ti}>
-                        Olá,
+                        Bem-Vindo, {user.first_name}
                     </Text>
-                    <Text style={styles.ti}>
-                        {user.first_name}
-                    </Text>
-
                 </View>
                 <Image
                     source={require('../assets/imagens/img5.png')}

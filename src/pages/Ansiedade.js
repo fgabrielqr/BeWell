@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet,ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-
+import { styles } from '../styles/ansiedade_style';
 
 export default function Ansiedade() {
-    const[isLoading,setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-
-    if(isLoading){
-        return(
-            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="#0000ff"/>
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
             </View>
         )
-    } 
+    }
 
     return (
-        <View  style={styles.container}>
+        <View style={styles.container}>
             <StatusBar
-            animated={true}
-            backgroundColor="#bde4dd"/>
-        
+                animated={true}
+                backgroundColor="#bde4dd" />
 
-        <ScrollView >
+            <ScrollView >
                 <Text style={styles.titulo}>
                     Ansiedade
                 </Text>
@@ -40,7 +38,7 @@ export default function Ansiedade() {
                 <Text style={styles.texto}>
                     • É aí que a ANSIEDADE ASSUME O CONTROLE e o seu filho perde o controle.
                 </Text>
-                
+
                 <Text style={styles.titulo}>
                     Sentimentos ansiosos
                 </Text>
@@ -101,14 +99,14 @@ export default function Ansiedade() {
                 </Text>
                 <Text style={styles.texto}>
                     Depois que passa o evento desagradável, nosso corpo retorna ao normal e geralmente
-                    acabamos nos sentindo melhor.                
+                    acabamos nos sentindo melhor.
                 </Text>
                 <Text style={styles.titulo}>
                     PENSAMENTOS de preocupação
                 </Text>
                 <Text style={styles.texto}>
                     Às vezes, pode não haver uma razão óbvia para nos sentirmos ansiosos. Outra causa de
-                    ansiedade é a FORMA COMO PENSAMOS sobre as coisas. Podemos pensar que:               
+                    ansiedade é a FORMA COMO PENSAMOS sobre as coisas. Podemos pensar que:
                 </Text>
                 <Text style={styles.texto}>
                     • as coisas vão dar errado;
@@ -136,47 +134,15 @@ export default function Ansiedade() {
                 </Text>
 
                 <Text style={styles.titulo}>
-                    Fonte: 
+                    Fonte:
                 </Text>
                 <Text style={styles.texto}>
-                    Materiais Didáticos e Folhas de Exercícios. Extraídos de Ansiedade, de Paul Stallard, publicado pela Artmed. 
+                    Materiais Didáticos e Folhas de Exercícios. Extraídos de Ansiedade, de Paul Stallard, publicado pela Artmed.
                 </Text>
                 <Text style={styles.texto}>
                     Link: https://document.onl/documents/fichas-paul-stallard-ansiedade.html
                 </Text>
             </ScrollView>
-
         </View>
     )
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    titulo:{
-        fontSize: 20,
-        marginRight:10,
-        marginLeft:10,
-        fontWeight: 'bold'
-    },
-    texto:{
-        fontSize: 20,
-        marginRight:15,
-        marginLeft:15,
-        textAlign: 'justify' 
-    },
-    welcome: {
-      fontSize: 18,
-      textAlign: 'center',
-      margin: 10,
-      fontFamily: 'Open Sans',
-      fontWeight:'800',
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
-      fontFamily: 'Open Sans',
-    },
-  });

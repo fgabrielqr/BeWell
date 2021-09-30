@@ -68,6 +68,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     logo: {
+        top: 15,
         width: 150,
         height: 250,
         marginTop: 0
@@ -117,8 +118,8 @@ export const styles = StyleSheet.create({
         color: 'black',
     },
     ti: {
-        top: 38,
-        fontSize: 15,
+        top: 85,
+        fontSize: 20,
         color: 'black',
         fontWeight: 'bold',
     },

@@ -6,26 +6,27 @@ export const style = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    btnS:{
+    btnS: {
         height: 50,
-        width: '25%',
+        width: '35%',
         backgroundColor: '#bde4dd',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
         bottom: 108
     },
-    btn:{
-       flex: 1,
+    btn: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    textBtn:{
-
-    },
-    caixa:{
+    caixa: {
         alignItems: 'center',
-        justifyContent: 'center',
-        
+        justifyContent: 'center'
+    },
+    logo: {
+        height: 150,
+        width: 150,
+        bottom: 20
     }
 })

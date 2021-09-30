@@ -4,9 +4,7 @@ import { WebView } from 'react-native-webview';
 import YoutubePlayer from "react-native-youtube-iframe";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-
 export function Itens(props){
-
     let link_video = props.data.url;
     const url = link_video.split("=");
         
@@ -26,12 +24,12 @@ export function Itens(props){
                 <TouchableOpacity style={styles.btn}  onPress={() => props.navigation.navigate('UpdateVideos', props.data)}
 >
                     <Text style={styles.textBtn} >
-                        <Icon name="edit"  size={25} color={"#666666"}/>
+                        <Icon name="edit"  size={20} color={"#666666"}/>
                     </Text>
                 </TouchableOpacity>
             
                 <TouchableOpacity style={styles.btn}  onPress={props.apagar}>
-                    <Icon name="trash-alt"  size={28} color={"#666666"}/>
+                    <Icon name="trash-alt"  size={20} color={"#666666"}/>
                 </TouchableOpacity>
             </View>
         </View>
@@ -45,7 +43,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         flexDirection: 'column',
         alignItems:'center',
-        //width:'100%'
     },
     titulo: {
         fontSize: 17,
@@ -54,7 +51,6 @@ const styles = StyleSheet.create({
         padding:5,        
     }, 
     video:{
-        
         height:241, 
         width:'100%'
     },
@@ -72,5 +68,4 @@ const styles = StyleSheet.create({
     btn:{
         padding:10
     }
-   
 })

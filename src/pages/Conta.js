@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { ItemUser } from '../components/ItemUser';
 import { useAuth } from '../contexts/Auth';
 import api from '../service/api';
@@ -54,9 +54,12 @@ export default function Conta({ navigation }) {
 
     return (
         <View style={style.container}>
-            <View style={style.caixa}>
+           <Image color={'#8257E5'}
+                    source={require('../assets/imagens/avatar.png')}
+                    style={style.logo}
+                />
                 <ItemUser data={userLoad} />
-            </View>
+          
             <View style={style.btnS}>
                 <TouchableOpacity style={style.btn} onPress={navigationToUdateUser}>
                     <Text style={style.textBtn}>

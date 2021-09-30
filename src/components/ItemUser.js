@@ -1,35 +1,41 @@
 import React from 'react';
-import { StyleSheet, Text,  View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
-export function ItemUser(props){
+export function ItemUser(props) {
     return (
         <View style={styles.itemContainer}>
-            <Text style={styles.textUser}>Nome - {props.data.first_name} {props.data.last_name}</Text>
-            <Text style={styles.textUser}>E-mail - {props.data.email}</Text>
-            <Text style={styles.textUser}>CRP - {props.data.crp}</Text>
+            <View style={styles.form}>
+                <View style={{ flexDirection: 'row', margin: 5 }}>
+                    <MaterialIcons name='person' size={30} color="#bde4dd" />
+                    <Text style={styles.textUser}> - {props.data.first_name} {props.data.last_name}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', margin: 5 }}>
+                    <MaterialIcons name='email' size={30} color="#bde4dd" />
+                    <Text style={styles.textUser}> - {props.data.email}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', margin: 5 }}>
+                    <MaterialIcons name='subtitles' size={30} color="#bde4dd" />
+                    <Text style={styles.textUser}> - {props.data.crp}</Text>
+                </View>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-     
-    itemContainer:{
+    itemContainer: {
         height: "50%",
         padding: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#F4F4F4',
-        borderWidth: 1,
-        borderColor: '#B6B4B4',
-        borderRadius: 10,
-         margin: 10,
-        flexWrap:'wrap'
-  
-      },
-      textUser:{
-          fontSize: 18,
-      },
-
-  });
+        flexWrap: 'wrap'
+    },
+    textUser: {
+        fontSize: 20,
+    },
+    form:{
+        top:50
+    }
+});
