@@ -3,15 +3,15 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingRight:15,
-        paddingLeft:10,
+        paddingRight: 15,
+        paddingLeft: 10,
     },
     inputs: {
         height: 55,
         width: '100%',
         borderRadius: 5,
         fontSize: 17,
-        marginTop:15,
+        marginTop: 15,
         backgroundColor: '#FFFFFF',
         paddingLeft: 15,
 
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 5,
     },
-    btn:{
+    btn: {
         flex: 1,
         top: 35,
         alignItems: 'center',
@@ -43,10 +43,10 @@ export const styles = StyleSheet.create({
     textBtn: {
         fontWeight: 'bold'
     },
-    inputError:{
+    inputError: {
         borderColor: 'red',
     },
-    error:{
+    error: {
         left: 10,
         fontSize: 14,
         color: 'red',

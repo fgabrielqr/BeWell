@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { styles } from '../styles/iten_user_style';
 
 export function ItemUser(props) {
     return (
@@ -22,20 +23,3 @@ export function ItemUser(props) {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    itemContainer: {
-        height: "50%",
-        padding: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap'
-    },
-    textUser: {
-        fontSize: 20,
-    },
-    form:{
-        top:50
-    }
-});

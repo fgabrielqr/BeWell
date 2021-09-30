@@ -3,20 +3,20 @@ import { StyleSheet } from 'react-native';
 export const UpdateStyle = StyleSheet.create({
     container: {
         flex: 1,
-        paddingRight:15,
-        paddingLeft:10,
+        paddingRight: 15,
+        paddingLeft: 10,
     },
-    form:{
+    form: {
         flex: 2,
     },
-    btn:{
+    btn: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    btnU:{
+    btnU: {
         flex: 1,
-        top:20,
+        top: 20,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -41,14 +41,14 @@ export const UpdateStyle = StyleSheet.create({
         width: '100%',
         borderRadius: 5,
         fontSize: 17,
-        marginTop:15,
+        marginTop: 15,
         backgroundColor: '#FFFFFF',
-        paddingLeft: 20,     
+        paddingLeft: 20,
     },
-    inputError:{
+    inputError: {
         borderColor: 'red',
     },
-    error:{
+    error: {
         left: 10,
         fontSize: 14,
         color: 'red',

@@ -54,12 +54,11 @@ export default function Conta({ navigation }) {
 
     return (
         <View style={style.container}>
-           <Image color={'#8257E5'}
-                    source={require('../assets/imagens/avatar.png')}
-                    style={style.logo}
-                />
-                <ItemUser data={userLoad} />
-          
+            <Image color={'#8257E5'}
+                source={require('../assets/imagens/avatar.png')}
+                style={style.logo}
+            />
+            <ItemUser data={userLoad} />
             <View style={style.btnS}>
                 <TouchableOpacity style={style.btn} onPress={navigationToUdateUser}>
                     <Text style={style.textBtn}>
@@ -67,8 +66,6 @@ export default function Conta({ navigation }) {
                     </Text>
                 </TouchableOpacity>
             </View>
-
         </View>
     )
 };
-

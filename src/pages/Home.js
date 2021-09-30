@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/home';
 import { useAuth } from '../contexts/Auth';
@@ -6,16 +6,16 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function Home({ navigation }) {
 
-    const {user, logout, userLoading} = useAuth();
-    const[isLoading,setIsLoading] = useState(false);
+    const { user, logout, userLoading } = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
 
-    if(isLoading){
-        return(
-            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="#0000ff"/>
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
             </View>
         )
-    } 
+    }
 
     function navigationToAnsiedade() {
         navigation.navigate('Ansiedade');

@@ -13,35 +13,35 @@ export default function ListPodcast({ navigation }) {
     const [podcast, setPodcast] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [podcastDelete, setPodcastDelete] = useState();
-    const [load,setLoad] = useState(true);
-    const[isLoading,setIsLoading] = useState(false);
+    const [load, setLoad] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    
-    if(isLoading){
-        return(
-            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="#0000ff"/>
+
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
             </View>
         )
-    } 
+    }
 
     //Função para deletar podcast
     async function handleDeletePodcast(id) {
-        const headers = { 
-           'authorization': 'Bearer ' + user.tokenUser,
-           'Accept' : 'application/json',
-           'Content-Type': 'application/json'  
-        }; 
+        const headers = {
+            'authorization': 'Bearer ' + user.tokenUser,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
 
-       try {
-           const responsePodcast =  await api.delete('podcasts/' +id+'/', { headers} );
-           navigationToListPodcast();
-           setModalVisible(!modalVisible)
-       }catch(error){
-           console.log(error);
-           Alert.alert('Error');
-       }
-             
+        try {
+            const responsePodcast = await api.delete('podcasts/' + id + '/', { headers });
+            navigationToListPodcast();
+            setModalVisible(!modalVisible)
+        } catch (error) {
+            console.log(error);
+            Alert.alert('Error');
+        }
+
     }
 
     //Função para naveção para lista de podcast
@@ -78,16 +78,14 @@ export default function ListPodcast({ navigation }) {
 
         } catch (error) {
             console.log(error);
-           // Alert.alert('Error');
+            // Alert.alert('Error');
         }
     }
-    
-    useEffect( ()=>{
-        handleListPodcast();
-        navigation.addListener('focus', ()=>setLoad(!load));
-    }, [load, navigation]);
 
-    
+    useEffect(() => {
+        handleListPodcast();
+        navigation.addListener('focus', () => setLoad(!load));
+    }, [load, navigation]);
 
     return (
         <View style={style.container}>

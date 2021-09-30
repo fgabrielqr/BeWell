@@ -8,10 +8,9 @@ export function Input(props) {
             <TextInput
                 style={styles.inputs}
                 placeholder={props.label} secureTextEntry={props.senha} onChangeText={props.onChangeText}
-                value={ props.value }
-                 { ...props }
+                value={props.value}
+                {...props}
             />
         </View>
     )
 }
-

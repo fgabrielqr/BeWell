@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    scroll:{
+    scroll: {
         flex: 1,
     },
     texto: {
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     textBtn: {
         fontWeight: 'bold',
     },
-    btn:{
+    btn: {
         top: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -41,15 +41,15 @@ export const styles = StyleSheet.create({
 
     containerInput: {
         width: "100%",
-        paddingRight:15,
-        paddingLeft:10
+        paddingRight: 15,
+        paddingLeft: 10
     },
     inputs: {
         height: 55,
         width: '100%',
         borderRadius: 5,
         fontSize: 17,
-        marginTop:15,
+        marginTop: 15,
         backgroundColor: '#FFFFFF',
         paddingLeft: 20,
 

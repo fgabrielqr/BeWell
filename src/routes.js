@@ -7,7 +7,6 @@ import CadastroPodcast from './pages/CadastroPodcast';
 import Videos from './pages/Videos';
 import Autocuidado from './pages/Autocuidado';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import HomeRoutes from './routes/home.routes';
 
 const Stack = createStackNavigator();

@@ -6,9 +6,9 @@ import { AuthProvider } from './src/contexts/Auth';
 export default function App() {
   return (
     <NavigationContainer>
-        <AuthProvider>
-          <MainRoutes />
-        </AuthProvider>
+      <AuthProvider>
+        <MainRoutes />
+      </AuthProvider>
     </NavigationContainer>
   );
 }

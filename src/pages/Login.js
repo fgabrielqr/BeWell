@@ -17,7 +17,6 @@ const schema = yup.object().shape({
 
 });
 
-
 export default function Login({ navigation }) {
 
     // constante retornadas pelo react-hook-form
@@ -27,7 +26,6 @@ export default function Login({ navigation }) {
 
     const { signWithBewell } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
-
 
     //function fazer requisição a api 
     async function handleLogin(data) {
@@ -66,9 +64,7 @@ export default function Login({ navigation }) {
                     error={errors.password && errors.password.message}
                     secureTextEntry={true}
                 />
-
             </View>
-
             <View style={styles.btn}>
                 <TouchableOpacity style={styles.btn_login} onPress={handleSubmit(handleLogin)}>
                     <Text style={styles.textBtn}>

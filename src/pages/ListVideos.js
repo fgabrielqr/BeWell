@@ -1,47 +1,47 @@
-import React, { useState, useEffect} from 'react';
-import { Text, View, Modal, Alert, FlatList, StyleSheet, TouchableHighlight} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, Modal, Alert, FlatList, StyleSheet, TouchableHighlight } from 'react-native';
 import api from '../service/api';
 import { useAuth } from '../contexts/Auth';
 import { StatusBar } from 'expo-status-bar';
-import  {Itens}  from '../components/Itens'
-import  {FabButton}  from '../components/FabButton'
+import { Itens } from '../components/Itens'
+import { FabButton } from '../components/FabButton'
 import { style } from '../styles/listarVideo';
 
-export default function ListVideos({navigation}) {
+export default function ListVideos({ navigation }) {
 
-    const {user} = useAuth();
-    const [videos,setVideos] = useState([]);
+    const { user } = useAuth();
+    const [videos, setVideos] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [videosDelete, setVideosDelete] = useState();
-    const [load,setLoad] = useState(true);
-    const[isLoading,setIsLoading] = useState(false);
+    const [load, setLoad] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
 
-    if(isLoading){
-        return(
-            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="#0000ff"/>
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
             </View>
         )
-    } 
+    }
 
     //function para deletar videos
     async function handleDeleteVideos(id) {
 
-        const headers = { 
+        const headers = {
             'authorization': 'Bearer ' + user.tokenUser,
-            'Accept' : 'application/json',
-            'Content-Type': 'application/json'  
-        }; 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
 
-       try {
-           const responseVideos =  await api.delete('videos/' +id+'/', { headers} );
-           setModalVisible(!modalVisible);
-           navigationToListVideos();
-       }catch(error){
-           console.log(error);
-           Alert.alert('Error');
-       }
+        try {
+            const responseVideos = await api.delete('videos/' + id + '/', { headers });
+            setModalVisible(!modalVisible);
+            navigationToListVideos();
+        } catch (error) {
+            console.log(error);
+            Alert.alert('Error');
+        }
     }
 
     //navegation para a lista de videos
@@ -61,44 +61,44 @@ export default function ListVideos({navigation}) {
     }
 
     //function para listar videos 
-    async function handleListVideos(){
-       
-      try {
-        //Requisição a api 
-        const responseVideos =  await  api.get('meus-videos/', { 
-            headers:{
-                'authorization': 'Bearer ' + user.tokenUser,
-                'Accept' : 'application/json',
-                'Content-Type': 'application/json'    
-            }
-        } );
-        //Pegando o data do response da api
-        const data = responseVideos.data
-        setVideos(data); //Setando o data para o videos
-    
-      }catch(error){
+    async function handleListVideos() {
+
+        try {
+            //Requisição a api 
+            const responseVideos = await api.get('meus-videos/', {
+                headers: {
+                    'authorization': 'Bearer ' + user.tokenUser,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            //Pegando o data do response da api
+            const data = responseVideos.data
+            setVideos(data); //Setando o data para o videos
+
+        } catch (error) {
             console.log(error);
             //Alert.alert('Error');
-      }
+        }
     }
-    
-    useEffect( ()=>{
+
+    useEffect(() => {
         handleListVideos();
-        navigation.addListener('focus', ()=>setLoad(!load));
+        navigation.addListener('focus', () => setLoad(!load));
     }, [load, navigation]);
 
     return (
         <View style={style.container}>
             <StatusBar
-            animated={true}
-            backgroundColor="#bde4dd"/>
+                animated={true}
+                backgroundColor="#bde4dd" />
             <View>
                 <Modal
                     animationType="slide"
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                    setModalVisible(!modalVisible);
+                        setModalVisible(!modalVisible);
                     }}>
                     <View style={style.centeredView}>
                         <View style={style.modalView}>
@@ -107,13 +107,13 @@ export default function ListVideos({navigation}) {
                                 <TouchableHighlight
                                     style={[style.button, style.buttonClose]}
                                     onPress={() => setModalVisible(!modalVisible)}
-                                    >
+                                >
                                     <Text style={style.textStyle}>Não</Text>
                                 </TouchableHighlight>
                                 <TouchableHighlight
                                     style={[style.button, style.buttonOpen]}
                                     onPress={() => handleDeleteVideos(videosDelete)}
-                                    >
+                                >
                                     <Text style={style.textStyle}>Sim</Text>
                                 </TouchableHighlight>
                             </View>
@@ -122,16 +122,16 @@ export default function ListVideos({navigation}) {
                 </Modal>
             </View>
             <View>
-                <FlatList  data={videos}  
-                    keyExtractor={item => item.id.toString()} 
-                    renderItem={ ({item}) =>  (
-                        <Itens data={item}  navigation={navigation} apagar={ () => handleModalVideos(item.id) }/>
-                    ) }
+                <FlatList data={videos}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <Itens data={item} navigation={navigation} apagar={() => handleModalVideos(item.id)} />
+                    )}
                 />
             </View>
             <FabButton
-                style={{bottom: 80, right:60}}
-                    create={ () => navigationCreateVideos()}
+                style={{ bottom: 80, right: 60 }}
+                create={() => navigationCreateVideos()}
             />
         </View>
     )

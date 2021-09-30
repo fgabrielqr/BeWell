@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Keyboard, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { UpdateStyle } from '../styles/update_style';
 import api from '../service/api';
@@ -18,20 +18,18 @@ const schema = yup.object().shape({
 
 });
 
+export default function CreateVideos({ navigation }) {
 
-export default function CreateVideos({navigation }) {
+    const { user, userLoading } = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const {user, userLoading} = useAuth();
-    const[isLoading,setIsLoading] = useState(false);
-
-    if(isLoading){
-        return(
-            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="#0000ff"/>
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
             </View>
         )
-    } 
-
+    }
 
     // constante retornadas pelo react-hook-form
     const { control, handleSubmit, formState: { errors } } = useForm({

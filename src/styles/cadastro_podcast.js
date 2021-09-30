@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 export const CadastroPodcasts = StyleSheet.create({
     container: {
         flex: 1,
-        paddingRight:15,
-        paddingLeft:10,
+        paddingRight: 15,
+        paddingLeft: 10,
     },
     texto: {
         top: 10,
@@ -13,7 +13,7 @@ export const CadastroPodcasts = StyleSheet.create({
     textBtn: {
         fontWeight: 'bold',
     },
-    btn:{
+    btn: {
         flex: 0.2,
         alignItems: 'center',
         justifyContent: 'center',
@@ -41,22 +41,22 @@ export const CadastroPodcasts = StyleSheet.create({
 
     containerInput: {
         width: "100%",
-        paddingRight:15,
-        paddingLeft:10
+        paddingRight: 15,
+        paddingLeft: 10
     },
     inputs: {
         height: 55,
         width: '100%',
         borderRadius: 5,
         fontSize: 17,
-        marginTop:15,
+        marginTop: 15,
         backgroundColor: '#FFFFFF',
-        paddingLeft: 20,     
+        paddingLeft: 20,
     },
-    inputError:{
+    inputError: {
         borderColor: 'red',
     },
-    error:{
+    error: {
         left: 10,
         fontSize: 14,
         color: 'red',

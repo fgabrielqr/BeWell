@@ -6,7 +6,6 @@ import { styles } from '../styles/ansiedade_style';
 export default function Autocuidado() {
     const [isLoading, setIsLoading] = useState(false);
 
-
     if (isLoading) {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -19,7 +18,6 @@ export default function Autocuidado() {
             <StatusBar
                 animated={true}
                 backgroundColor="#bde4dd" />
-
             <ScrollView >
                 <Text style={styles.titulo}>
                     Técnicas para tratar a ansiedade
@@ -140,7 +138,7 @@ export default function Autocuidado() {
                     9. vivendo hoje
                 </Text>
                 <Text style={styles.texto}>
-                {''}    Simplesmente aprender a viver para hoje pode diminuir sua ansiedade.
+                    {''}    Simplesmente aprender a viver para hoje pode diminuir sua ansiedade.
                     Aqueles com ansiedade muitas vezes começam a se concentrar demais em como eles se sentem e as suas preocupações sobre o futuro. A cada dia torna-se tentando viver com a ansiedade em vez de tentar viver em geral. Aprender a abraçar a ideia que você tem ansiedade e tentar viver uma vida grande e emocionante de qualquer maneira é importante.
                     E o que é interessante é que se você pode aprender para finalmente ter essa mentalidade - a deixar-se experimentar o medo e tentar viver a vida de qualquer maneira - você vai achar que a sua ansiedade tende a dissipar-se com ele. Não é uma cura, mas é perto.
                 </Text>
@@ -148,7 +146,7 @@ export default function Autocuidado() {
                     Fonte:
                 </Text>
                 <Text style={styles.texto}>
-                   10 técnicas para controlar a ansiedade, de Joeverton Rodrigo - Pesquisador e Escritor.
+                    10 técnicas para controlar a ansiedade, de Joeverton Rodrigo - Pesquisador e Escritor.
                 </Text>
                 <Text style={styles.texto}>
                     Link: http://blog.joevertonrodrigocursos.com

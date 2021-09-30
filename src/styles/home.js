@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    btns:{
+    btns: {
         flex: 1,
         alignItems: 'flex-end',
         justifyContent: 'flex-end'
@@ -138,10 +138,10 @@ export const styles = StyleSheet.create({
         backgroundColor: '#000000',
         right: 150
     },
-    btn_logout:{
-        margin:10,
+    btn_logout: {
+        margin: 10,
     },
-    textBtn:{
+    textBtn: {
         fontSize: 25,
         fontWeight: 'bold'
     }
